@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	 "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+
+<head>
+
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="include/tutorial.css">
+	<script type="text/javascript" src="../../build/lib/three.min.js"></script>
+	<script type="text/javascript" src="../../build/jsmodeler.js"></script>
+	<script type="text/javascript" src="../../build/jsmodeler.ext.three.js"></script>
+	<title>JSModeler Minimal</title>
+	<script type="text/javascript">
+		function Load ()
+		{
+			var viewerSettings = {
+				cameraEyePosition : [-2.0, -1.5, 1.0],
+				cameraCenterPosition : [0.0, 0.0, 0.0],
+				cameraUpVector : [0.0, 0.0, 1.0]
+			};
+
+			var viewer = new JSM.ThreeViewer ();
+			viewer.Start (document.getElementById ('example'), viewerSettings);
+
+			var body = JSM.GenerateCuboid (1.0, 1.0, 1.0);
+			var meshes = JSM.ConvertBodyToThreeMeshes (body);
+			viewer.AddMeshes (meshes);
+
+			viewer.Draw ();
+		}
+	
+	    window.onload = function ()
+		{
+			Load ();			
+		}
+	</script>
+
+</head>
+
+<body>
+	<div class="header">
+		<div class="title">JSModeler Minimal Example</div>
+		<div class="subtitle"><a class="link" href="https://github.com/kovacsv/JSModeler">https://github.com/kovacsv/JSModeler</a></div>
+	</div>
+	<div class="frame">
+		<canvas class="demo" id="example" width="800" height="400"></canvas>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+html, body
+{
+	color : #000000;
+	background : #ffffff;
+	font-size : 12px;
+	font-family : Arial, cursive;
+	margin : 0px;
+	padding : 0px;
+}
+
+div.header
+{
+	color : #222222;
+	background : #f2f2f2;
+	padding : 10px;
+	margin-bottom : 10px;
+	border-bottom : 1px solid #e2e2e2;
+}
+
+div.title
+{
+	font-size : 17px;
+	text-align : center;
+	margin-bottom : 5px;
+}
+
+div.subtitle
+{
+	text-align : center;
+}
+
+div.frame
+{
+	width : 800px;
+	margin : 0px auto;
+}
+
+input.large
+{
+	color : #222222;
+	font-size : 17px;
+	text-align : center;
+	width : 400px;
+	border : 1px solid #cccccc;
+	margin-bottom : 10px;
+	padding : 3px;
+}
+
+a.link
+{
+	color : #225588;
+	background : transparent;
+	text-decoration : none;
+}
+
+a.link:hover
+{
+	text-decoration : underline;
+}

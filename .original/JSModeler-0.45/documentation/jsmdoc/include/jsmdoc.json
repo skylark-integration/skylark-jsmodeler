@@ -1,0 +1,5335 @@
+{
+	"project" : "JSModeler",
+	"modules" : {
+		"Core" : {
+			"functions" : {
+				"RandomNumber" : {
+					"description" : "Generates a random number between two numbers.",
+					"parameters" : [
+						["from", "number", "lowest random result"],
+						["to", "number", "highest random result"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"RandomInt" : {
+					"description" : "Generates a random integer between two integers.",
+					"parameters" : [
+						["from", "integer", "lowest random result"],
+						["to", "integer", "highest random result"]
+					],
+					"returns" : [
+						["integer", "the result"]
+					]
+				},
+				"RandomBoolean" : {
+					"description" : "Generates a random boolean value.",
+					"returns" : [
+						["boolean", "the result"]
+					]
+				},
+				"SeededRandomInt" : {
+					"description" : "Generates a random integer between two integers. A seed number can be specified.",
+					"parameters" : [
+						["from", "integer", "lowest random result"],
+						["to", "integer", "highest random result"],
+						["seed", "integer", "seed value"]
+					],
+					"returns" : [
+						["integer", "the result"]
+					]
+				},
+				"ValueOrDefault" : {
+					"description" : "Returns the given value, or a default if it is undefined.",
+					"parameters" : [
+						["val", "anything", "new value"],
+						["def", "anything", "default value"]
+					],
+					"returns" : [
+						["anything", "the result"]
+					]
+				},
+				"PrevIndex" : {
+					"description" : "Returns the circular previous index for an array with the given length.",
+					"parameters" : [
+						["index", "integer", "the index"],
+						["length", "integer", "the number of indices"]
+					]
+				},
+				"NextIndex" : {
+					"description" : "Returns the circular next index for an array with the given length.",
+					"parameters" : [
+						["index", "integer", "the index"],
+						["length", "integer", "the number of indices"]
+					]
+				},
+				"CopyObjectProperties" : {
+					"description" : "Copies one object properties to another object.",
+					"parameters" : [
+						["source", "anything", "source object"],
+						["target", "anything", "target object"],
+						["overwrite", "boolean", "overwrite existing properties"]
+					]
+				},
+				"GetObjectProperty" : {
+					"description" : "Returns the given property of the object. If it doesn't exist, returns the given default value.",
+					"parameters" : [
+						["object", "anything", "the object"],
+						["propertyName", "string", "the name of the property"],
+						["defaultValue", "anything", "the default value"]
+					]
+				},
+				"Message" : {
+					"description" : "Writes a message to the console.",
+					"parameters" : [
+						["message", "string", "the message"]
+					]
+				},
+				"SwapArrayValues" : {
+					"description" : "Swaps to array values.",
+					"parameters" : [
+						["array", "anything[]", "the array"],
+						["from", "integer", "from index"],
+						["to", "integer", "to index"]
+					]
+				},
+				"BubbleSort" : {
+					"description" : "Sorts an array with bubble sort.",
+					"parameters" : [
+						["array", "anything[]", "the array to sort"],
+						["onCompare", "function", "the compare function"],
+						["onSwap", "function", "the swap function"]
+					]
+				},
+				"ShiftArray" : {
+					"description" : "Shifts an array.",
+					"parameters" : [
+						["array", "anything[]", "the array to shift"],
+						["count", "integer", "shift count"]
+					]
+				},
+				"AsyncRunTask" : {
+					"description" : "Calls a function multiple times asynchronously. If the environment is not specified, it will run synchronously.",
+					"parameters" : [
+						["taskFunction", "function", "the function to run"],
+						["callbacks", "object", "callbacks for start, process, and finish"],
+						["runCount", "integer", "the count of runs"],
+						["timeout", "integer", "the timeout between runs"],
+						["userData", "anything", "task specific data"]
+					]
+				},
+				"IsWebGLEnabled" : {
+					"description" : "Returns if WebGL is enabled in the browser.",
+					"returns" : [
+						["boolean", "the result"]
+					]
+				},
+				"IsFileApiEnabled" : {
+					"description" : "Returns if file api is enabled in the browser.",
+					"returns" : [
+						["boolean", "the result"]
+					]
+				},
+				"LoadJsonFile" : {
+					"description" : "Loads a json file, and calls a callback with the parsed json.",
+					"parameters" : [
+						["fileName", "string", "the name of the json"],
+						["onReady", "function", "the callback"]
+					]
+				}
+			},
+			"classes" : {
+				"Timer" : {
+					"description" : "Utility class for time measure.",
+					"functions" : {
+						"Start" : {
+							"description" : "Starts the timer."
+						},
+						"Stop" : {
+							"description" : "Stops the timer."
+						},
+						"Result" : {
+							"description" : "Returns the time between start and stop.",
+							"returns" : [
+								["number", "The result."]
+							]
+						}
+					}
+				},
+				"FPSCounter" : {
+					"description" : "Utility class for FPS count. It calculates the frames and returns FPS count for the last interval with the given length. The Get function should called in every frame.",
+					"functions" : {
+						"Get" : {
+							"description" : "Returns the FPS count for the last interval with the given length.",
+							"parameters" : [
+								["interval", "integer", "the interval length in milliseconds"]
+							],
+							"returns" : [
+								["integer", "The result."]
+							]
+						}
+					}
+				}
+			}
+		},
+		"Geometry" : {
+			"functions" : {
+				"IsZero" : {
+					"description" : "Determines if the given value is near zero. Uses epsilon for comparison.",
+					"parameters" : [
+						["a", "number", "the value"]
+					],
+					"returns" : [
+						["boolean", "the result"]
+					]
+				},
+				"IsPositive" : {
+					"description" : "Determines if the given value is positive. Uses epsilon for comparison.",
+					"parameters" : [
+						["a", "number", "the value"]
+					],
+					"returns" : [
+						["boolean", "the result"]
+					]
+				},
+				"IsNegative" : {
+					"description" : "Determines if the given value is negative. Uses epsilon for comparison.",
+					"parameters" : [
+						["a", "number", "the value"]
+					],
+					"returns" : [
+						["boolean", "the result"]
+					]
+				},
+				"IsLower" : {
+					"description" : "Determines if a value is lower than an other. Uses epsilon for comparison.",
+					"parameters" : [
+						["a", "number", "first value"],
+						["b", "number", "second value"]
+					],
+					"returns" : [
+						["boolean", "the result"]
+					]
+				},
+				"IsGreater" : {
+					"description" : "Determines if a value is greater than an other. Uses epsilon for comparison.",
+					"parameters" : [
+						["a", "number", "first value"],
+						["b", "number", "second value"]
+					],
+					"returns" : [
+						["boolean", "the result"]
+					]
+				},
+				"IsEqual" : {
+					"description" : "Determines if two values are equal. Uses epsilon for comparison.",
+					"parameters" : [
+						["a", "number", "first value"],
+						["b", "number", "second value"]
+					],
+					"returns" : [
+						["boolean", "the result"]
+					]
+				},
+				"IsEqualWithEps" : {
+					"description" : "Determines if two values are equal. Uses the given epsilon for comparison.",
+					"parameters" : [
+						["a", "number", "first value"],
+						["b", "number", "second value"],
+						["eps", "number", "epsilon value"]
+					],
+					"returns" : [
+						["boolean", "the result"]
+					]
+				},
+				"IsLowerOrEqual" : {
+					"description" : "Determines if a value is lower or equal to an other. Uses epsilon for comparison.",
+					"parameters" : [
+						["a", "number", "first value"],
+						["b", "number", "second value"]
+					],
+					"returns" : [
+						["boolean", "the result"]
+					]
+				},
+				"IsGreaterOrEqual" : {
+					"description" : "Determines if a value is greater or equal to an other. Uses epsilon for comparison.",
+					"parameters" : [
+						["a", "number", "first value"],
+						["b", "number", "second value"]
+					],
+					"returns" : [
+						["boolean", "the result"]
+					]
+				},
+				"Minimum" : {
+					"description" : "Returns the minimum of two values. Uses epsilon for comparison.",
+					"parameters" : [
+						["a", "number", "first value"],
+						["b", "number", "second value"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"Maximum" : {
+					"description" : "Returns the maximum of two values. Uses epsilon for comparison.",
+					"parameters" : [
+						["a", "number", "first value"],
+						["b", "number", "second value"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"ArcSin" : {
+					"description" : "Calculates the arcus sinus value.",
+					"parameters" : [
+						["value", "number", "the value"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"ArcCos" : {
+					"description" : "Calculates the arcus cosinus value.",
+					"parameters" : [
+						["value", "number", "the value"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"CoordFromArray2D" : {
+					"description" : "Returns a coordinate from an array of components.",
+					"parameters" : [
+						["array", "number[2]", "the array of components"]
+					],
+					"returns" : [
+						["Coord2D", "the result"]
+					]
+				},
+				"CoordToArray2D" : {
+					"description" : "Returns array of components from a coordinate.",
+					"parameters" : [
+						["coord", "Coord2D", "the coordinate"]
+					],
+					"returns" : [
+						["array", "number[2]"]
+					]
+				},
+				"CoordAdd2D" : {
+					"description" : "Adds two coordinates.",
+					"parameters" : [
+						["a", "Coord2D", "the first coordinate"],
+						["b", "Coord2D", "the second coordinate"]
+					],
+					"returns" : [
+						["Coord2D", "the result"]
+					]
+				},
+				"CoordSub2D" : {
+					"description" : "Subs two coordinates.",
+					"parameters" : [
+						["a", "Coord2D", "the first coordinate"],
+						["b", "Coord2D", "the second coordinate"]
+					],
+					"returns" : [
+						["Coord2D", "the result"]
+					]
+				},
+				"VectorDot2D" : {
+					"description" : "Calculates the dot product of two vectors.",
+					"parameters" : [
+						["a", "Vector2D", "the first vector"],
+						["b", "Vector2D", "the second vector"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"CoordFromArray" : {
+					"description" : "Returns a coordinate from an array of components.",
+					"parameters" : [
+						["array", "number[3]", "the array of components"]
+					],
+					"returns" : [
+						["Coord", "the result"]
+					]
+				},
+				"CoordToArray" : {
+					"description" : "Returns array of components from a coordinate.",
+					"parameters" : [
+						["coord", "Coord", "the coordinate"]
+					],
+					"returns" : [
+						["array", "number[3]"]
+					]
+				},
+				"CoordAdd" : {
+					"description" : "Adds two coordinates.",
+					"parameters" : [
+						["a", "Coord", "the first coordinate"],
+						["b", "Coord", "the second coordinate"]
+					],
+					"returns" : [
+						["Coord", "the result"]
+					]
+				},
+				"CoordSub" : {
+					"description" : "Subs two coordinates.",
+					"parameters" : [
+						["a", "Coord", "the first coordinate"],
+						["b", "Coord", "the second coordinate"]
+					],
+					"returns" : [
+						["Coord", "the result"]
+					]
+				},
+				"VectorDot" : {
+					"description" : "Calculates the dot product of two vectors.",
+					"parameters" : [
+						["a", "Vector", "the first vector"],
+						["b", "Vector", "the second vector"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"VectorCross" : {
+					"description" : "Calculates the cross product of two vectors.",
+					"parameters" : [
+						["a", "Vector", "the first vector"],
+						["b", "Vector", "the second vector"]
+					],
+					"returns" : [
+						["Vector", "the result"]
+					]
+				},
+				"MatrixDeterminant2x2" : {
+					"description" : "Calculates the determinant of a 2x2 matrix.",
+					"parameters" : [
+						["m00..m11", "4 numbers", "the matrix values"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"MatrixDeterminant3x3" : {
+					"description" : "Calculates the determinant of a 3x3 matrix.",
+					"parameters" : [
+						["m00..m22", "9 numbers", "the matrix values"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"MatrixDeterminant4x4" : {
+					"description" : "Calculates the determinant of a 4x4 matrix.",
+					"parameters" : [
+						["m00..m33", "16 numbers", "the matrix values"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"MidCoord2D" : {
+					"description" : "Calculates the coordinate in the middle of two coordinates.",
+					"parameters" : [
+						["a", "Coord2D", "first coordinate"],
+						["b", "Coord2D", "second coordinate"]
+					],
+					"returns" : [
+						["Coord2D", "the result"]
+					]
+				},
+				"CoordOrientation2D" : {
+					"description" : "Calculates the turn type of three coordinates.",
+					"parameters" : [
+						["a", "Coord2D", "the first coordinate"],
+						["b", "Coord2D", "the second coordinate"],
+						["c", "Coord2D", "the third coordinate"]
+					],
+					"returns" : [
+						["Orientation", "the result"]
+					]
+				},
+				"CoordSignedDistance2D" : {
+					"description" : "Calculates the distance of two coordinates along a direction vector.",
+					"parameters" : [
+						["a", "Coord2D", "first coordinate"],
+						["b", "Coord2D", "second coordinate"],
+						["direction", "Vector2D", "direction vector"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"PolarToCartesian" : {
+					"description" : "Converts a polar coordinate to a cartesian coordinate.",
+					"parameters" : [
+						["radius", "number", "the radius component"],
+						["theta", "number", "the angle component"]
+					],
+					"returns" : [
+						["Coord2D", "the result"]
+					]
+				},
+				"GetArcLengthFromAngle" : {
+					"description" : "Calculates arc length from radius and angle.",
+					"parameters" : [
+						["radius", "number", "the radius of the circle"],
+						["theta", "number", "the angle of rotation"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"GetAngleFromArcLength" : {
+					"description" : "Calculates angle from arc length.",
+					"parameters" : [
+						["radius", "number", "the radius of the circle"],
+						["arcLength", "number", "the arc length"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"MidCoord" : {
+					"description" : "Calculates the coordinate in the middle of two coordinates.",
+					"parameters" : [
+						["a", "Coord", "first coordinate"],
+						["b", "Coord", "second coordinate"]
+					],
+					"returns" : [
+						["Coord", "the result"]
+					]
+				},
+				"CoordSignedDistance" : {
+					"description" : "Calculates the distance of two coordinates along a direction vector.",
+					"parameters" : [
+						["a", "Coord", "first coordinate"],
+						["b", "Coord", "second coordinate"],
+						["direction", "Vector", "direction vector"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"GetVectorsFullAngle" : {
+					"description" : "Calculates the full angle (0 to pi) of two vectors with the given normal vector.",
+					"parameters" : [
+						["a", "Vector", "the first vector"],
+						["b", "Vector", "the second vector"],
+						["normal", "Vector", "the normal vector"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"CoordOrientation" : {
+					"description" : "Calculates the turn type of three coordinates.",
+					"parameters" : [
+						["a", "Coord", "the first coordinate"],
+						["b", "Coord", "the second coordinate"],
+						["c", "Coord", "the third coordinate"],
+						["normal", "Vector", "normal vector for calculation"]
+					],
+					"returns" : [
+						["Orientation", "the result"]
+					]
+				},
+				"SphericalToCartesian" : {
+					"description" : "Converts a spherical coordinate to a cartesian coordinate.",
+					"parameters" : [
+						["radius", "number", "the radius component"],
+						["theta", "number", "the angle component"],
+						["phi", "number", "the phi component"]
+					],
+					"returns" : [
+						["Coord", "the result"]
+					]
+				},
+				"CylindricalToCartesian" : {
+					"description" : "Converts a cylindrical coordinate to a cartesian coordinate.",
+					"parameters" : [
+						["radius", "number", "the radius component"],
+						["height", "number", "the height component"],
+						["theta", "number", "the theta component"]
+					],
+					"returns" : [
+						["Coord", "the result"]
+					]
+				},
+				"GetArcLength" : {
+					"description" : "Calculates arc length between two vectors.",
+					"parameters" : [
+						["a", "Vector", "the first vector"],
+						["b", "Vector", "the second vector"],
+						["radius", "number", "the radius component"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"GetFullArcLength" : {
+					"description" : "Calculates arc length between two vectors with the given normal vector.",
+					"parameters" : [
+						["a", "Vector", "the first vector"],
+						["b", "Vector", "the second vector"],
+						["radius", "number", "the radius component"],
+						["normal", "Vector", "the normal vector"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"CalculateCentroid" : {
+					"description" : "Calculates center points of the given coordinates.",
+					"parameters" : [
+						["coords", "Coord[*]", "the array of coordinates"]
+					],
+					"returns" : [
+						["Coord", "the result"]
+					]
+				},
+				"CalculateTriangleNormal" : {
+					"description" : "Calculates normal vector for the given triangle vertices.",
+					"parameters" : [
+						["v0", "Coord", "the first vertex of the triangle"],
+						["v1", "Coord", "the second vertex of the triangle"],
+						["v2", "Coord", "the third vertex of the triangle"]
+					],
+					"returns" : [
+						["Vector", "the result"]
+					]
+				},
+				"CalculateNormal" : {
+					"description" : "Calculates normal vector for the given coordinates.",
+					"parameters" : [
+						["coords", "Coord[*]", "the array of coordinates"]
+					],
+					"returns" : [
+						["Vector", "the result"]
+					]
+				},
+				"BarycentricInterpolation" : {
+					"description" : "Calculates barycentric interpolation for the given values.",
+					"parameters" : [
+						["vertex0, vertex1, vertex2", "Coord", "the vertices of interpolation"],
+						["value0, value1, value2", "Coord", "the values to interpolate"],
+						["position", "Coord", "the position of interpolation"]
+					],
+					"returns" : [
+						["Coord", "the result"]
+					]
+				},
+				"MatrixIdentity" : {
+					"description" : "Generates an identity matrix.",
+					"returns" : [
+						["number[16]", "the result matrix"]
+					]
+				},
+				"MatrixClone" : {
+					"description" : "Clones a matrix.",
+					"parameters" : [
+						["matrix", "number[16]", "the source matrix"]
+					],
+					"returns" : [
+						["number[16]", "the result matrix"]
+					]
+				},
+				"MatrixTranspose" : {
+					"description" : "Transposes a matrix.",
+					"parameters" : [
+						["matrix", "number[16]", "the source matrix"]
+					],
+					"returns" : [
+						["number[16]", "the result matrix"]
+					]
+				},
+				"MatrixVectorMultiply" : {
+					"description" : "Multiplies a matrix with a vector.",
+					"parameters" : [
+						["matrix", "number[16]", "the matrix"],
+						["vector", "number[4]", "the vector"]
+					],
+					"returns" : [
+						["number[4]", "the result vector"]
+					]
+				},
+				"MatrixMultiply" : {
+					"description" : "Multiplies a two matrices.",
+					"parameters" : [
+						["matrix1", "number[16]", "first matrix"],
+						["matrix2", "number[16]", "second matrix"]
+					],
+					"returns" : [
+						["number[16]", "the result matrix"]
+					]
+				},
+				"MatrixDeterminant" : {
+					"description" : "Calculates the determinant of a matrix.",
+					"parameters" : [
+						["matrix", "number[16]", "the source matrix"]
+					],
+					"returns" : [
+						["number", "the determinant"]
+					]
+				},
+				"MatrixInvert" : {
+					"description" : "Inverts a matrix.",
+					"parameters" : [
+						["matrix", "number[16]", "the source matrix"]
+					],
+					"returns" : [
+						["number[16]", "the result matrix"]
+					]
+				},
+				"MatrixTranslation" : {
+					"description" : "Creates a translation matrix.",
+					"parameters" : [
+						["x", "number", "x offset of the transformation"],
+						["y", "number", "y offset of the transformation"],
+						["z", "number", "z offset of the transformation"]
+					],
+					"returns" : [
+						["number[16]", "the result matrix"]
+					]
+				},
+				"MatrixRotation" : {
+					"description" : "Creates a rotation matrix around the given axis.",
+					"parameters" : [
+						["axis", "Vector", "the axis of the rotation"],
+						["angle", "number", "the angle of the rotation"],
+						["origo", "Coord", "the origo of the rotation"]
+					],
+					"returns" : [
+						["number[16]", "the result matrix"]
+					]
+				},
+				"MatrixRotationQuaternion" : {
+					"description" : "Creates a rotation matrix from a given quaternion.",
+					"parameters" : [
+						["quaternion", "number[4]", "the quaternion"]
+					],
+					"returns" : [
+						["number[16]", "the result matrix"]
+					]
+				},
+				"MatrixRotationX" : {
+					"description" : "Creates a rotation matrix around the x axis.",
+					"parameters" : [
+						["angle", "number", "the angle of rotation"]
+					],
+					"returns" : [
+						["number[16]", "the result matrix"]
+					]
+				},
+				"MatrixRotationY" : {
+					"description" : "Creates a rotation matrix around the y axis.",
+					"parameters" : [
+						["angle", "number", "the angle of rotation"]
+					],
+					"returns" : [
+						["number[16]", "the result matrix"]
+					]
+				},
+				"MatrixRotationZ" : {
+					"description" : "Creates a rotation matrix around the z axis.",
+					"parameters" : [
+						["angle", "number", "the angle of rotation"]
+					],
+					"returns" : [
+						["number[16]", "the result matrix"]
+					]
+				},
+				"ApplyTransformation" : {
+					"description" : "Applies a matrix transformation to a coordinate.",
+					"parameters" : [
+						["matrix", "number[16]", "the matrix"],
+						["coord", "Coord", "the coordinate"]
+					],
+					"returns" : [
+						["Coord", "the result"]
+					]
+				},
+				"ApplyRotation" : {
+					"description" : "Applies the rotation part of a matrix transformation to a coordinate.",
+					"parameters" : [
+						["matrix", "number[16]", "the matrix"],
+						["coord", "Coord", "the coordinate"]
+					],
+					"returns" : [
+						["Coord", "the result"]
+					]
+				},
+				"GetSectorSegmentation2D" : {
+					"description" : "Returns the segmented coordinates of a sector.",
+					"parameters" : [
+						["sector", "Sector2D", "the sector"],
+						["segmentation", "integer", "the segmentation"]
+					],
+					"returns" : [
+						["Coord2D[*]", "the result coordinates"]
+					]
+				},
+				"GetSectorSegmentation" : {
+					"description" : "Returns the segmented coordinates of a sector.",
+					"parameters" : [
+						["sector", "Sector", "the sector"],
+						["segmentation", "integer", "the segmentation"]
+					],
+					"returns" : [
+						["Coord[*]", "the result coordinates"]
+					]
+				},
+				"BoxUnion" : {
+					"description" : "Calculates the union of two 3D boxes.",
+					"parameters" : [
+						["aBox", "Box", "the first box"],
+						["bBox", "Box", "the second box"]
+					],
+					"returns" : [
+						["Box", "the result"]
+					]
+				},
+				"IdentityTransformation" : {
+					"description" : "Generates an identity transformation.",
+					"returns" : [
+						["Transformation", "the result"]
+					]
+				},
+				"TranslationTransformation" : {
+					"description" : "Generates a translation transformation.",
+					"parameters" : [
+						["translation", "Vector", "the translation vector"]
+					],
+					"returns" : [
+						["Transformation", "the result"]
+					]
+				},
+				"OffsetTransformation" : {
+					"description" : "Generates an offset transformation.",
+					"parameters" : [
+						["direction", "Vector", "the direction of the offset"],
+						["distance", "number", "the distance of the offset"]
+					],
+					"returns" : [
+						["Transformation", "the result"]
+					]
+				},
+				"RotationTransformation" : {
+					"description" : "Generates a rotation transformation.",
+					"parameters" : [
+						["axis", "Vector", "the axis of the rotation"],
+						["angle", "number", "the angle of the rotation"],
+						["origo", "Coord", "the origo of the rotation"]
+					],
+					"returns" : [
+						["Transformation", "the result"]
+					]
+				},
+				"RotationXTransformation" : {
+					"description" : "Generates a rotation transformation around the x axis.",
+					"parameters" : [
+						["angle", "number", "the angle of the rotation"],
+						["origo", "Coord", "the origo of the rotation"]
+					],
+					"returns" : [
+						["Transformation", "the result"]
+					]
+				},
+				"RotationYTransformation" : {
+					"description" : "Generates a rotation transformation around the y axis.",
+					"parameters" : [
+						["angle", "number", "the angle of the rotation"],
+						["origo", "Coord", "the origo of the rotation"]
+					],
+					"returns" : [
+						["Transformation", "the result"]
+					]
+				},
+				"RotationZTransformation" : {
+					"description" : "Generates a rotation transformation around the z axis.",
+					"parameters" : [
+						["angle", "number", "the angle of the rotation"],
+						["origo", "Coord", "the origo of the rotation"]
+					],
+					"returns" : [
+						["Transformation", "the result"]
+					]
+				},
+				"RotationXYZTransformation" : {
+					"description" : "Generates a rotation transformation around all axis in x, y, z order.",
+					"parameters" : [
+						["xAngle", "number", "the x angle of the rotation"],
+						["yAngle", "number", "the y angle of the rotation"],
+						["zAngle", "number", "the z angle of the rotation"],
+						["origo", "Coord", "the origo of the rotation"]
+					],
+					"returns" : [
+						["Transformation", "the result"]
+					]
+				},
+				"GetPlaneFromCoordAndDirection" : {
+					"description" : "Generates a plane from a coordinate and a direction.",
+					"parameters" : [
+						["coord", "Coord", "the coordinate"],
+						["direction", "Vector", "the direction"]
+					],
+					"returns" : [
+						["Plane", "the result"]
+					]
+				},
+				"GetPlaneFromThreeCoords" : {
+					"description" : "Generates a plane from three coordinates.",
+					"parameters" : [
+						["a", "Coord", "the first coordinate"],
+						["b", "Coord", "the second coordinate"],
+						["c", "Coord", "the third coordinate"]
+					],
+					"returns" : [
+						["Plane", "the result"]
+					]
+				},
+				"CoordPlaneSignedDirectionalDistance" : {
+					"description" : "Calculates the signed distance of a coordinate and a plane along a direction vector.",
+					"parameters" : [
+						["coord", "Coord", "the coordinate"],
+						["direction", "Vector", "the direction"],
+						["plane", "Plane", "the plane"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"CoordPlaneDirectionalDistance" : {
+					"description" : "Calculates the distance of a coordinate and a plane along a direction vector.",
+					"parameters" : [
+						["coord", "Coord", "the coordinate"],
+						["direction", "Vector", "the direction"],
+						["plane", "Plane", "the plane"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"MatrixView" : {
+					"description" : "Creates a view matrix.",
+					"parameters" : [
+						["eye", "Coord", "eye position"],
+						["center", "Coord", "center position"],
+						["up", "Vector", "up vector"]
+					],
+					"returns" : [
+						["number[16]", "the result matrix"]
+					]
+				},
+				"MatrixPerspective" : {
+					"description" : "Creates a perspective matrix.",
+					"parameters" : [
+						["fieldOfView", "number", "field of view"],
+						["aspectRatio", "number", "aspect ratio"],
+						["nearPlane", "number", "near clipping plane"],
+						["farPlane", "number", "far clipping plane"]
+					],
+					"returns" : [
+						["number[16]", "the result matrix"]
+					]
+				},
+				"Project" : {
+					"description" : "Projects a 3D coordinate to 2D.",
+					"parameters" : [
+						["coord", "Coord", "the coordinate"],
+						["eye", "Coord", "the eye of the camera"],
+						["center", "Coord", "the center of the camera"],
+						["up", "Vector", "the up vector of the camera"],
+						["fieldOfView", "number", "camera field of view"],
+						["aspectRatio", "number", "aspect ratio of the desired image"],
+						["nearPlane", "number", "near cutting plane distance"],
+						["farPlane", "number", "far cutting plane distance"],
+						["viewPort", "number[4]", "view port coordinates in pixels"]
+					],
+					"returns" : [
+						["Coord", "the result"]
+					]
+				},
+				"Unproject" : {
+					"description" : "Projects a 2D coordinate to 3D.",
+					"parameters" : [
+						["coord", "Coord", "the coordinate (the z component can be zero)"],
+						["eye", "Coord", "the eye of the camera"],
+						["center", "Coord", "the center of the camera"],
+						["up", "Vector", "the up vector of the camera"],
+						["fieldOfView", "number", "camera field of view"],
+						["aspectRatio", "number", "aspect ratio of the desired image"],
+						["nearPlane", "number", "near cutting plane distance"],
+						["farPlane", "number", "far cutting plane distance"],
+						["viewPort", "number[4]", "view port coordinates in pixels"]
+					],
+					"returns" : [
+						["Coord", "the result"]
+					]
+				},
+				"ConvexHull2D" : {
+					"description" : "Calculates the 2D convex hull from the given coordinates.",
+					"parameters" : [
+						["coords", "Coord2D[*]", "the coordinate array"]
+					],
+					"returns" : [
+						["Coord2D[*]", "coordinate array of the convex hull"]
+					]
+				},
+				"ConvexHull3D" : {
+					"description" : "Calculates the 3D convex hull from the given coordinates. The result defines convex hull triangles as an array of arrays with three coordinates.",
+					"parameters" : [
+						["coords", "Coord[*]", "the coordinate array"]
+					],
+					"returns" : [
+						["Coord[3][*]", "the result"]
+					]
+				},
+				"OffsetPolygonContour" : {
+					"description" : "Offsets all vertices of a polygon.",
+					"parameters" : [
+						["polygon", "Polygon", "the polygon"],
+						["width", "number", "the width of the offset"]
+					],
+					"returns" : [
+						["Polygon", "the result"]
+					]
+				},
+				"CutPolygon2DWithLine" : {
+					"description" : "Cuts a polygon with a line. The result array contains cutted polygons grouped by their position to the line.",
+					"parameters" : [
+						["polygon", "Polygon2D", "the polygon"],
+						["line", "Line2D", "the line"],
+						["leftPolygons", "Polygon2D[*]", "(out) polygons on the left of the line"],
+						["rightPolygons", "Polygon2D[*]", "(out) polygons on the right of the line"],
+						["cutPolygons", "Polygon2D[*]", "(out) polygons on the line"]
+					],
+					"returns" : [
+						["boolean", "success"]
+					]
+				},
+				"CutPolygonWithPlane" : {
+					"description" : "Cuts a polygon with a plane. The result array contains cutted polygons grouped by their position to the plane.",
+					"parameters" : [
+						["polygon", "Polygon", "the polygon"],
+						["plane", "Plane", "the plane"],
+						["frontPolygons", "Polygon[*]", "(out) polygons in front of the plane"],
+						["backPolygons", "Polygon[*]", "(out) polygons at the back of the plane"],
+						["cutPolygons", "Polygon[*]", "(out) polygons on the plane"]
+					],
+					"returns" : [
+						["boolean", "success"]
+					]
+				},
+				"SegmentPolygon2D" : {
+					"description" : "Segments up a polygon along x and y axis.",
+					"parameters" : [
+						["polygon", "Polygon2D", "the polygon"],
+						["xSegments", "integer", "x segment number"],
+						["ySegments", "integer", "y segment number"]
+					],
+					"returns" : [
+						["Polygon[*]", "result polygons"]
+					]
+				},
+				"TriangulatePolygon" : {
+					"description" : "Triangulates a polygon. The result defines triangles as an array of arrays with three original vertex indices.",
+					"parameters" : [
+						["polygon", "Polygon", "the polygon"]
+					],
+					"returns" : [
+						["integer[3][*]", "the result"]
+					]
+				},
+				"TraverseOctreeNodes" : {
+					"description" : "Traverses the nodes of the tree, and calls the given callback when a node found. The return value of the callback determines if we need to continue traverse along that given node.",
+					"parameters" : [
+						["octree", "Octree", "the octree"],
+						["nodeFound", "function", "the callback"]
+					]
+				},
+				"CreateOctreeChildNodes" : {
+					"description" : "Create child nodes for an octree node. It calls a callback function which should create a new node element for the octree.",
+					"parameters" : [
+						["originalBox", "Box", "the box of the original node"],
+						["createNodeCallback", "function", "the callback function"]
+					],
+					"returns" : [
+						["object[*]", "the result"]
+					]
+				},
+				"ClipPolygonWithBSPTree" : {
+					"description" : "Clips a polygon with a created BSP tree.",
+					"parameters" : [
+						["polygon", "Polygon", "the polygon"],
+						["bspTree", "BSPTree", "the BSP tree"],
+						["frontPolygons", "Polygon[*]", "(out) polygons in front of the tree"],
+						["backPolygons", "Polygon[*]", "(out) polygons at the back of the tree"],
+						["planarFrontPolygons", "Polygon[*]", "(out) polygons on the tree looks front"],
+						["planarBackPolygons", "Polygon[*]", "(out) polygons on the tree looks back"]
+					],
+					"returns" : [
+						["boolean", "success"]
+					]
+				},
+				"TraverseBSPTreeForEyePosition" : {
+					"description" : "Traverses a BSP tree for a given eye position.",
+					"parameters" : [
+						["bspTree", "BSPTree", "the BSP tree"],
+						["eyePosition", "Coord", "the eye position"],
+						["nodeFound", "function", "the callback function"]
+					]
+				},
+				"GenerateCubicBezierCurve" : {
+					"description" : "Generates a bezier curve from the given points.",
+					"parameters" : [
+						["p0", "Coord2D", "point 1"],
+						["p1", "Coord2D", "point 2"],
+						["p2", "Coord2D", "point 3"],
+						["p3", "Coord2D", "point 4"],
+						["segmentation", "integer", "the segmentation of the result curve"]
+					],
+					"returns" : [
+						["Coord2D[]", "the result"]
+					]
+				},
+				"BernsteinPolynomial" : {
+					"description" : "Calculates the value of the Bernstein polynomial.",
+					"parameters" : [
+						["k", "integer", "the start index"],
+						["n", "integer", "the end index"],
+						["x", "number", "the value"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"GenerateBezierCurve" : {
+					"description" : "Generates a bezier curve from the given points.",
+					"parameters" : [
+						["points", "Coord2D[]", "the points"],
+						["segmentation", "integer", "the segmentation of the result curve"]
+					],
+					"returns" : [
+						["Coord2D[]", "the result"]
+					]
+				},
+				"GetGaussianCParameter" : {
+					"description" : "Calculates the gaussian functions c parameter which can be used for the gaussian function to reach epsilon at a given value.",
+					"parameters" : [
+						["x", "number", "the value"],
+						["a", "number", "the a parameter of the function"],
+						["b", "number", "the b parameter of the function"],
+						["epsilon", "number", "the epsilon value"]
+					],
+					"returns" : [
+						["number", "the c parameter of the function"]
+					]
+				},
+				"GetGaussianValue" : {
+					"description" : "Calculates the gaussian functions value.",
+					"parameters" : [
+						["x", "number", "the value"],
+						["a", "number", "the a parameter of the function"],
+						["b", "number", "the b parameter of the function"],
+						["c", "number", "the c parameter of the function"]
+					],
+					"returns" : [
+						["number", "the result"]
+					]
+				},
+				"GenerateCirclePoints" : {
+					"description" : "Generates coordinates on circle.",
+					"parameters" : [
+						["radius", "number", "the radius of the circle"],
+						["segmentation", "number", "the segmentation of the circle"],
+						["origo", "Coord", "the origo of the circle"]
+					],
+					"returns" : [
+						["Coord[*]", "the result"]
+					]
+				},
+				"GetRuledMesh" : {
+					"description" : "Generates ruled mesh coordinates and polygons between two coordinate array. The two arrays should have the same length. The result is a coordinate array and a polygon array which contains indices for vertices.",
+					"parameters" : [
+						["aCoords", "Coord[*]", "the first coordinate array"],
+						["bCoords", "Coord[*]", "the second coordinate array"],
+						["segmentation", "number", "the segmentation of the mesh"],
+						["vertices", "Coord[*]", "(out) the vertices of the mesh"],
+						["polygons", "integer[*][4]", "(out) the polygons of the mesh"]
+					]
+				}
+			},
+			"classes" : {
+				"Coord2D" : {
+					"description" : "Represents a 2D coordinate.",
+					"parameters" : [
+						["x", "number", "the first component"],
+						["y", "number", "the second component"]
+					],
+					"functions" : {
+						"Set" : {
+							"description" : "Sets the coordinate.",
+							"parameters" : [
+								["x", "number", "the first component"],
+								["y", "number", "the second component"]
+							]
+						},
+						"IsEqual" : {
+							"description" : "Returns if the coordinate is equal with the given one.",
+							"parameters" : [
+								["coord", "Coord2D", "the coordinate"]
+							],
+							"returns" : [
+								["boolean", "the result"]
+							]
+						},
+						"IsEqualWithEps" : {
+							"description" : "Returns if the coordinate is equal with the given one. Uses the given epsilon for comparison.",
+							"parameters" : [
+								["coord", "Coord2D", "the coordinate"],
+								["eps", "number", "the epsilon"]
+							],
+							"returns" : [
+								["boolean", "the result"]
+							]
+						},
+						"DistanceTo" : {
+							"description" : "Calculates the coordinate distance to the given one.",
+							"parameters" : [
+								["coord", "Coord2D", "the coordinate"]
+							],
+							"returns" : [
+								["number", "the result"]
+							]
+						},
+						"AngleTo" : {
+							"description" : "Calculates the coordinate vector angle to the given one.",
+							"parameters" : [
+								["coord", "Coord2D", "the coordinate"]
+							],
+							"returns" : [
+								["number", "the result"]
+							]
+						},
+						"Length" : {
+							"description" : "Calculates the length of the coordinate vector.",
+							"returns" : [
+								["number", "the result"]
+							]
+						},
+						"MultiplyScalar" : {
+							"description" : "Multiplies the vector with a scalar.",
+							"parameters" : [
+								["scalar", "number", "the scalar"]
+							],
+							"returns" : [
+								["Coord2D", "this pointer"]
+							]
+						},
+						"Normalize" : {
+							"description" : "Normalizes the coordinate vector.",
+							"returns" : [
+								["Coord2D", "this pointer"]
+							]
+						},
+						"SetLength" : {
+							"description" : "Sets the length of the coordinate vector.",
+							"parameters" : [
+								["length", "number", "the length"]
+							],
+							"returns" : [
+								["Coord2D", "this pointer"]
+							]
+						},
+						"Offset" : {
+							"description" : "Offsets the coordinate.",
+							"parameters" : [
+								["direction", "Vector2D", "the direction of the offset"],
+								["distance", "number", "the distance of the offset"]
+							],
+							"returns" : [
+								["Coord2D", "this pointer"]
+							]
+						},
+						"Rotate" : {
+							"description" : "Rotates the coordinate.",
+							"parameters" : [
+								["angle", "number", "the angle of the rotation"],
+								["origo", "Coord2D", "the origo of the rotation"]
+							],
+							"returns" : [
+								["Coord2D", "this pointer"]
+							]
+						},
+						"ToString" : {
+							"description" : "Converts the coordinate values to string.",
+							"returns" : [
+								["string", "the string representation of the coordinate"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the coordinate.",
+							"returns" : [
+								["Coord2D", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"Vector2D" : {
+					"description" : "Same as Coord2D."
+				},
+				"Coord" : {
+					"description" : "Represents a 3D coordinate.",
+					"parameters" : [
+						["x", "number", "the first component"],
+						["y", "number", "the second component"],
+						["z", "number", "the third component"]
+					],
+					"functions" : {
+						"Set" : {
+							"description" : "Sets the coordinate.",
+							"parameters" : [
+								["x", "number", "the first component"],
+								["y", "number", "the second component"],
+								["z", "number", "the third component"]
+							]
+						},
+						"IsEqual" : {
+							"description" : "Returns if the coordinate is equal with the given one.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							],
+							"returns" : [
+								["boolean", "the result"]
+							]
+						},
+						"IsEqualWithEps" : {
+							"description" : "Returns if the coordinate is equal with the given one. Uses the given epsilon for comparison.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"],
+								["eps", "number", "the epsilon"]
+							],
+							"returns" : [
+								["boolean", "the result"]
+							]
+						},
+						"DistanceTo" : {
+							"description" : "Calculates the coordinate distance to the given one.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							],
+							"returns" : [
+								["number", "the result"]
+							]
+						},
+						"AngleTo" : {
+							"description" : "Calculates the coordinate vector angle to the given one.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							],
+							"returns" : [
+								["number", "the result"]
+							]
+						},
+						"IsCollinearWith" : {
+							"description" : "Returns if the coordinate vector is collinear with the given one.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							],
+							"returns" : [
+								["boolean", "the result"]
+							]
+						},
+						"IsPerpendicularWith" : {
+							"description" : "Returns if the coordinate vector is perpendicular with the given one.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							],
+							"returns" : [
+								["boolean", "the result"]
+							]
+						},
+						"Length" : {
+							"description" : "Calculates the length of the coordinate vector.",
+							"returns" : [
+								["number", "the result"]
+							]
+						},
+						"Add" : {
+							"description" : "Adds the given coordinate to coordinate.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							]
+						},
+						"Sub" : {
+							"description" : "Subs the given coordinate from coordinate.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							]
+						},
+						"MultiplyScalar" : {
+							"description" : "Multiplies the vector with a scalar.",
+							"parameters" : [
+								["scalar", "number", "the scalar"]
+							],
+							"returns" : [
+								["Coord", "this pointer"]
+							]
+						},
+						"Normalize" : {
+							"description" : "Normalizes the coordinate vector.",
+							"returns" : [
+								["Coord", "this pointer"]
+							]
+						},
+						"SetLength" : {
+							"description" : "Sets the length of the coordinate vector.",
+							"parameters" : [
+								["length", "number", "the length"]
+							],
+							"returns" : [
+								["Coord", "this pointer"]
+							]
+						},
+						"Offset" : {
+							"description" : "Offsets the coordinate.",
+							"parameters" : [
+								["direction", "Vector", "the direction of the offset"],
+								["distance", "number", "the distance of the offset"]
+							],
+							"returns" : [
+								["Coord", "this pointer"]
+							]
+						},
+						"Rotate" : {
+							"description" : "Rotates the coordinate.",
+							"parameters" : [
+								["axis", "Vector", "the axis of the rotation"],
+								["angle", "number", "the angle of the rotation"],
+								["origo", "Coord", "the origo of the rotation"]
+							],
+							"returns" : [
+								["Coord", "this pointer"]
+							]
+						},
+						"ToCoord2D" : {
+							"description" : "Converts the coordinate to a 2D coordinate.",
+							"parameters" : [
+								["normal", "Vector", "the normal vector for conversion"]
+							],
+							"returns" : [
+								["Coord2D", "the result"]
+							]
+						},
+						"ToString" : {
+							"description" : "Converts the coordinate values to string.",
+							"returns" : [
+								["string", "the string representation of the coordinate"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the coordinate.",
+							"returns" : [
+								["Coord", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"Vector" : {
+					"description" : "Same as Coord."
+				},
+				"CoordSystem" : {
+					"description" : "Represents coordinate system.",
+					"parameters" : [
+						["origo", "Coord", "origo"],
+						["e1", "Vector", "first direction vector"],
+						["e2", "Vector", "second direction vector"],
+						["e3", "Vector", "third direction vector"]
+					],
+					"functions" : {
+						"Set" : {
+							"description" : "Sets the coordinate system.",
+							"parameters" : [
+								["origo", "Coord", "origo"],
+								["e1", "Vector", "first direction vector"],
+								["e2", "Vector", "second direction vector"],
+								["e3", "Vector", "third direction vector"]
+							]
+						},
+						"CoordSystemToDirectionVectors" : {
+							"description" : "Converts coordinate system vectors to origo relative direction vectors.",
+							"returns" : [
+								["CoordSystem", "this pointer"]
+							]
+						},
+						"CoordSystemToAbsoluteCoords" : {
+							"description" : "Converts the coordinate system vectors to absolute coordinates.",
+							"returns" : [
+								["CoordSystem", "this pointer"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the coordinate system.",
+							"returns" : [
+								["CoordSystem", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"Sector2D" : {
+					"description" : "Represents a 2D sector.",
+					"parameters" : [
+						["beg", "Coord2D", "the beginning coordinate"],
+						["end", "Coord2D", "the ending coordinate"]
+					],
+					"functions" : {
+						"Set" : {
+							"description" : "Sets the sector.",
+							"parameters" : [
+								["beg", "Coord2D", "the beginning coordinate"],
+								["end", "Coord2D", "the ending coordinate"]
+							]
+						},
+						"CoordPosition" : {
+							"description" : "Calculates the position of the sector and the given coordinate.",
+							"parameters" : [
+								["coord", "Coord2D", "the coordinate"]
+							],
+							"returns" : [
+								["CoordSectorPosition2D", "the result"]
+							]
+						},
+						"SectorPosition" : {
+							"description" : "Calculates the position of the sector and the given sector.",
+							"parameters" : [
+								["sector", "Sector2D", "the sector"],
+								["intersection", "Coord2D", "(out) the intersection point if it exists"]
+							],
+							"returns" : [
+								["SectorSectorPosition2D", "the result"]
+							]
+						},
+						"ProjectCoord" : {
+							"description" : "Calculates the projected coordinate of the given coordinate.",
+							"parameters" : [
+								["coord", "Coord2D", "the coordinate"]
+							],
+							"returns" : [
+								["Coord2D", "the projected coordinate"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the sector.",
+							"returns" : [
+								["Sector2D", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"Sector" : {
+					"description" : "Represents a 3D sector.",
+					"parameters" : [
+						["beg", "Coord", "the beginning coordinate"],
+						["end", "Coord", "the ending coordinate"]
+					],
+					"functions" : {
+						"Set" : {
+							"description" : "Sets the sector.",
+							"parameters" : [
+								["beg", "Coord", "the beginning coordinate"],
+								["end", "Coord", "the ending coordinate"]
+							]
+						},
+						"GetLength" : {
+							"description" : "Returns the length of the sector.",
+							"returns" : [
+								["number", "the result"]
+							]
+						},
+						"CoordPosition" : {
+							"description" : "Calculates the position of the sector and the given coordinate.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							],
+							"returns" : [
+								["CoordSectorPosition", "the result"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the sector.",
+							"returns" : [
+								["Sector", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"Line2D" : {
+					"description" : "Represents a 2D infinite line.",
+					"parameters" : [
+						["start", "Coord2D", "the start point of the line"],
+						["direction", "Vector2D", "the direction of the line"]
+					],
+					"functions" : {
+						"Set" : {
+							"description" : "Sets the line.",
+							"parameters" : [
+								["start", "Coord2D", "the start point of the line"],
+								["direction", "Vector2D", "the direction of the line"]
+							]
+						},
+						"CoordPosition" : {
+							"description" : "Calculates the position of the line and the given coordinate.",
+							"parameters" : [
+								["coord", "Coord2D", "the coordinate"]
+							],
+							"returns" : [
+								["CoordLinePosition2D", "the result"]
+							]
+						},
+						"CoordSignedDistance" : {
+							"description" : "Calculates the signed distance of the line and the given coordinate.",
+							"parameters" : [
+								["coord", "Coord2D", "the coordinate"]
+							],
+							"returns" : [
+								["number", "the result"]
+							]
+						},
+						"LinePosition" : {
+							"description" : "Calculates the position of the line and the given line.",
+							"parameters" : [
+								["line", "Line2D", "the line"],
+								["intersection", "Coord2D", "(out) the intersection point if it exists"]
+							],
+							"returns" : [
+								["LineLinePosition2D", "the result"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the line.",
+							"returns" : [
+								["Line2D", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"Line" : {
+					"description" : "Represents a 3D infinite line.",
+					"parameters" : [
+						["start", "Coord", "the start point of the line"],
+						["direction", "Vector", "the direction of the line"]
+					],
+					"functions" : {
+						"Set" : {
+							"description" : "Sets the line.",
+							"parameters" : [
+								["start", "Coord", "the start point of the line"],
+								["direction", "Vector", "the direction of the line"]
+							]
+						},
+						"CoordPosition" : {
+							"description" : "Calculates the position of the line and the given coordinate.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"],
+								["projected", "Coord", "(out) the projected coordinate"]
+							],
+							"returns" : [
+								["CoordLinePosition", "the result"]
+							]
+						},
+						"ProjectCoord" : {
+							"description" : "Calculates the projected coordinate of the given coordinate.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							],
+							"returns" : [
+								["Coord", "the result"]
+							]
+						},
+						"ClosestPoint" : {
+							"description" : "Calculates the closest points between the line and a given line.",
+							"parameters" : [
+								["line", "Line", "the line"],
+								["thisClosestPoint", "Coord", "(out) the closest point on the current line"],
+								["lineClosestPoint", "Coord", "(out) the closest point on the given line"]
+							],
+							"returns" : [
+								["boolean", "success"]
+							]
+						},
+						"LinePosition" : {
+							"description" : "Calculates the position of the line and the given line.",
+							"parameters" : [
+								["line", "Line", "the line"],
+								["intersection", "Coord", "(out) the intersection point if it exists"]
+							],
+							"returns" : [
+								["LineLinePosition", "the result"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the line.",
+							"returns" : [
+								["Line", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"Box2D" : {
+					"description" : "Represents a 2D box.",
+					"parameters" : [
+						["min", "Coord2D", "the minimum position of the box"],
+						["min", "Coord2D", "the maximum position of the box"]
+					],
+					"functions" : {
+						"Set" : {
+							"description" : "Sets the box.",
+							"parameters" : [
+								["min", "Coord2D", "the minimum position of the box"],
+								["min", "Coord2D", "the maximum position of the box"]
+							]
+						},
+						"GetCenter" : {
+							"description" : "Returns the center point of the box.",
+							"returns" : [
+								["Coord2D", "the result"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the box.",
+							"returns" : [
+								["Box2D", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"Box" : {
+					"description" : "Represents a 3D box.",
+					"parameters" : [
+						["min", "Coord", "the minimum position of the box"],
+						["min", "Coord", "the maximum position of the box"]
+					],
+					"functions" : {
+						"Set" : {
+							"description" : "Sets the box.",
+							"parameters" : [
+								["min", "Coord", "the minimum position of the box"],
+								["min", "Coord", "the maximum position of the box"]
+							]
+						},
+						"GetCenter" : {
+							"description" : "Returns the center point of the box.",
+							"returns" : [
+								["Coord", "the result"]
+							]
+						},
+						"GetSize" : {
+							"description" : "Returns the size of the box.",
+							"returns" : [
+								["Coord", "the result"]
+							]
+						},
+						"IsCoordInside" : {
+							"description" : "Determines if the given coordinate is inside the box.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							],
+							"returns" : [
+								["boolean", "the result"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the box.",
+							"returns" : [
+								["Box", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"Sphere" : {
+					"description" : "Represents a sphere.",
+					"parameters" : [
+						["center", "Coord", "the center of the sphere"],
+						["radius", "number", "the radius of the sphere"]
+					],
+					"functions" : {
+						"Set" : {
+							"description" : "Sets the sphere.",
+							"parameters" : [
+								["center", "Coord", "the center of the sphere"],
+								["radius", "number", "the radius of the sphere"]
+							]
+						},
+						"GetCenter" : {
+							"description" : "Returns the center of the sphere.",
+							"returns" : [
+								["Coord", "the result"]
+							]
+						},
+						"GetRadius" : {
+							"description" : "Returns the radius of the sphere.",
+							"returns" : [
+								["number", "the result"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the sphere.",
+							"returns" : [
+								["Sphere", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"Transformation" : {
+					"description" : "Represents a transformation matrix.",
+					"functions" : {
+						"GetMatrix" : {
+							"description" : "Returns the matrix of the transformation.",
+							"returns" : [
+								["number[16]", "the matrix"]
+							]
+						},
+						"SetMatrix" : {
+							"description" : "Sets matrix of the transformation.",
+							"parameters" : [
+								["matrix", "number[16]", "the matrix"]
+							]
+						},
+						"Append" : {
+							"description" : "Adds a transformation to the matrix.",
+							"parameters" : [
+								["source", "Transformation", "the another transformation"]
+							]
+						},
+						"Apply" : {
+							"description" : "Apply transformation to a coordinate.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							],
+							"returns" : [
+								["Coord", "the result"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the transformation.",
+							"returns" : [
+								["Transformation", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"Plane" : {
+					"description" : "Represents a plane.",
+					"parameters" : [
+						["a", "number", "the a component of plane equation"],
+						["b", "number", "the b component of plane equation"],
+						["c", "number", "the c component of plane equation"],
+						["d", "number", "the d component of plane equation"]
+					],
+					"functions" : {
+						"Set" : {
+							"description" : "Sets the plane.",
+							"parameters" : [
+								["a", "number", "the a component of plane equation"],
+								["b", "number", "the b component of plane equation"],
+								["c", "number", "the c component of plane equation"],
+								["d", "number", "the d component of plane equation"]
+							]
+						},
+						"GetNormal" : {
+							"description" : "Calculates the normal vector of the plane.",
+							"returns" : [
+								["Vector", "the result"]
+							]
+						},
+						"CoordSignedDistance" : {
+							"description" : "Calculates the signed distance of a coordinate and the plane.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							],
+							"returns" : [
+								["number", "the result"]
+							]
+						},
+						"CoordDistance" : {
+							"description" : "Calculates the distance of a coordinate and the plane.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							],
+							"returns" : [
+								["number", "the result"]
+							]
+						},
+						"ProjectCoord" : {
+							"description" : "Projects a coordinate to the plane.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							],
+							"returns" : [
+								["Coord", "the projected coordinate"]
+							]
+						},
+						"CoordPosition" : {
+							"description" : "Calculates the position of the plane and the given coordinate.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							],
+							"returns" : [
+								["CoordPlanePosition", "thre result"]
+							]
+						},
+						"LinePosition" : {
+							"description" : "Calculates the position of the plane and the given line.",
+							"parameters" : [
+								["line", "Line", "the line"],
+								["intersection", "Coord", "(out) the intersection point if it exists"]
+							],
+							"returns" : [
+								["CoordLinePosition", "the result"]
+							]
+						},
+						"LineIntersection" : {
+							"description" : "Calculates the intersection point of a line and a plane. The line should not be parallel to the plane.",
+							"parameters" : [
+								["line", "Line", "the line"]
+							],
+							"returns" : [
+								["Coord", "the result"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the plane.",
+							"returns" : [
+								["Plane", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"Polygon2D" : {
+					"description" : "Represents a 2D polygon.",
+					"functions" : {
+						"AddVertex" : {
+							"description" : "Adds a vertex to the polygon.",
+							"parameters" : [
+								["x", "number", "the x coordinate of the vertex"],
+								["y", "number", "the y coordinate of the vertex"]
+							]
+						},
+						"AddVertexCoord" : {
+							"description" : "Adds a vertex coordinate to the polygon.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							]
+						},
+						"GetVertex" : {
+							"description" : "Returns the vertex with the given index.",
+							"parameters" : [
+								["index", "integer", "the index of the vertex"]
+							],
+							"returns" : [
+								["Coord2D", "the vertex"]
+							]
+						},
+						"RemoveVertex" : {
+							"description" : "Removes a vertex from the polygon.",
+							"parameters" : [
+								["index", "integer", "the index of the vertex"]
+							]
+						},
+						"VertexCount" : {
+							"description" : "Returns the vertex count of the polygon.",
+							"returns" : [
+								["integer", "vertex count"]
+							]
+						},
+						"EnumerateVertices" : {
+							"description" : "Enumerates the vertices of the polygon, and calls a function for each vertex.",
+							"parameters" : [
+								["from", "integer", "the start vertex index"],
+								["to", "integer", "the end vertex index"],
+								["callback", "function", "the callback function"]
+							]
+						},
+						"GetNextVertex" : {
+							"description" : "Returns the vertex index after the given one.",
+							"parameters" : [
+								["index", "integer", "the vertex index"]
+							],
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"GetPrevVertex" : {
+							"description" : "Returns the vertex index before the given one.",
+							"parameters" : [
+								["index", "integer", "the vertex index"]
+							],
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"ShiftVertices" : {
+							"description" : "Shifts polygon vertices.",
+							"parameters" : [
+								["count", "integer", "the number of shifts"]
+							]
+						},
+						"ReverseVertices" : {
+							"description" : "Reverses the orientation of the vertices."
+						},
+						"GetVertexAngle" : {
+							"description" : "Returns the angle of the given vertex.",
+							"parameters" : [
+								["index", "integer", "the vertex index"]
+							],
+							"returns" : [
+								["number", "the result"]
+							]
+						},
+						"GetSignedArea" : {
+							"description" : "Calculates the signed area of the polygon.",
+							"returns" : [
+								["number", "the result"]
+							]
+						},
+						"GetArea" : {
+							"description" : "Calculates the area of the polygon.",
+							"returns" : [
+								["number", "the result"]
+							]
+						},
+						"GetOrientation" : {
+							"description" : "Calculates the orientation of the polygon.",
+							"returns" : [
+								["Orientation", "the result"]
+							]
+						},
+						"GetComplexity" : {
+							"description" : "Calculates the complexity of the polygon.",
+							"returns" : [
+								["Complexity", "the result"]
+							]
+						},
+						"GetVertexOrientation" : {
+							"description" : "Calculates the orientation of the given vertex of the polygon.",
+							"parameters" : [
+								["index", "integer", "the vertex index"]
+							],
+							"returns" : [
+								["Orientation", "the result"]
+							]
+						},
+						"IsConvexVertex" : {
+							"description" : "Returns if the given vertex is convex.",
+							"parameters" : [
+								["index", "integer", "the vertex index"]
+							],
+							"returns" : [
+								["boolean", "the result"]
+							]
+						},
+						"IsConcaveVertex" : {
+							"description" : "Returns if the given vertex is concave.",
+							"parameters" : [
+								["index", "integer", "the vertex index"]
+							],
+							"returns" : [
+								["boolean", "the result"]
+							]
+						},
+						"CoordPosition" : {
+							"description" : "Calculates the position of a coordinate and the polygon.",
+							"parameters" : [
+								["coord", "Coord2D", "the coordinate"]
+							],
+							"returns" : [
+								["CoordPolygonPosition2D", "the result"]
+							]
+						},
+						"SectorPosition" : {
+							"description" : "Calculates the position of a sector and the polygon. The given begin and end vertex indices are omitted form intersection checking.",
+							"parameters" : [
+								["sector", "Sector2D", "the sector"],
+								["begIndex", "integer", "begin vertex index"],
+								["endIndex", "integer", "end vertex index"]
+							],
+							"returns" : [
+								["CoordSectorPosition2D", "the result"]
+							]
+						},
+						"IsDiagonal" : {
+							"description" : "Returns if the sector between two vertices is diagonal.",
+							"parameters" : [
+								["from", "integer", "begin vertex index"],
+								["to", "integer", "end vertex index"]
+							],
+							"returns" : [
+								["boolean", "the result"]
+							]
+						},
+						"ToArray" : {
+							"description" : "Creates an array of vertices from polygon.",
+							"returns" : [
+								["Coord2D[*]", "the result"]
+							]
+						},
+						"FromArray" : {
+							"description" : "Creates the polygon from an array of vertices.",
+							"parameters" : [
+								["vertices", "Coord2D[*]", "the array of vertices"]
+							]
+						},
+						"GetBoundingBox" : {
+							"description" : "Calculates the bounding box of the polygon.",
+							"returns" : [
+								["Box2D", "the result"]
+							]
+						},
+						"Clear" : {
+							"description" : "Makes the polygon empty."
+						},
+						"ClearCache" : {
+							"description" : "Clears stored values from the polygon."
+						},
+						"Clone" : {
+							"description" : "Clones the polygon.",
+							"returns" : [
+								["Polygon2D", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"ContourPolygon2D" : {
+					"description" : "Represents a 2D polygon with more contours.",
+					"functions" : {
+						"AddVertex" : {
+							"description" : "Adds a vertex to the last contour of the polygon.",
+							"parameters" : [
+								["x", "number", "the x coordinate of the vertex"],
+								["y", "number", "the y coordinate of the vertex"]
+							]
+						},
+						"AddVertexCoord" : {
+							"description" : "Adds a vertex coordinate to the last contour of the polygon.",
+							"parameters" : [
+								["coord", "Coord2D", "the coordinate"]
+							]
+						},
+						"AddContourVertex" : {
+							"description" : "Adds a vertex to the given contour of the polygon.",
+							"parameters" : [
+								["contourIndex", "integer", "the index of the contour"],
+								["x", "number", "the x coordinate of the vertex"],
+								["y", "number", "the y coordinate of the vertex"]
+							]
+						},
+						"AddContourVertexCoord" : {
+							"description" : "Adds a vertex coordinate to the given contour of the polygon.",
+							"parameters" : [
+								["contourIndex", "integer", "the index of the contour"],
+								["coord", "Coord2D", "the coordinate"]
+							]
+						},
+						"VertexCount" : {
+							"description" : "Returns the vertex count of the polygon.",
+							"returns" : [
+								["integer", "vertex count"]
+							]
+						},
+						"ReverseVertices" : {
+							"description" : "Reverses the orientation of the vertices."
+						},
+						"ContourVertexCount" : {
+							"description" : "Returns the vertex count of the given contour of the polygon.",
+							"parameters" : [
+								["contourIndex", "integer", "the index of the contour"]
+							],
+							"returns" : [
+								["integer", "vertex count"]
+							]
+						},
+						"AddContour" : {
+							"description" : "Adds a contour to the polygon. If the given contour is null, an empty contour is added to the polygon.",
+							"parameters" : [
+								["contour", "Polygon2D", "the new contour"]
+							]
+						},
+						"GetLastContour" : {
+							"description" : "Returns the last contour of the polygon.",
+							"returns" : [
+								["Polygon2D", "the result"]
+							]
+						},
+						"GetContourVertex" : {
+							"description" : "Returns the vertex of the given contour with the given index.",
+							"parameters" : [
+								["contourIndex", "integer", "the index of the contour"],
+								["vertexIndex", "integer", "the index of the vertex"]
+							],
+							"returns" : [
+								["Coord2D", "the vertex"]
+							]
+						},
+						"GetContour" : {
+							"description" : "Returns the contour with the given index.",
+							"parameters" : [
+								["contourIndex", "integer", "the index of the contour"]
+							],
+							"returns" : [
+								["Polygon2D", "the contour"]
+							]
+						},
+						"ContourCount" : {
+							"description" : "Returns the contour count of the polygon.",
+							"returns" : [
+								["integer", "contour count"]
+							]
+						},
+						"GetSignedArea" : {
+							"description" : "Calculates the signed area of the polygon.",
+							"returns" : [
+								["number", "the result"]
+							]
+						},
+						"GetArea" : {
+							"description" : "Calculates the area of the polygon.",
+							"returns" : [
+								["number", "the result"]
+							]
+						},
+						"GetOrientation" : {
+							"description" : "Calculates the orientation of the polygon.",
+							"returns" : [
+								["Orientation", "the result"]
+							]
+						},
+						"GetComplexity" : {
+							"description" : "Calculates the complexity of the polygon.",
+							"returns" : [
+								["Complexity", "the result"]
+							]
+						},
+						"ToArray" : {
+							"description" : "Creates an array of vertices from polygon. The result contains null values between contours.",
+							"returns" : [
+								["Coord2D[*]", "the result"]
+							]
+						},
+						"FromArray" : {
+							"description" : "Creates the polygon from an array of vertices. The input should contain null values between contours.",
+							"parameters" : [
+								["vertices", "Coord2D[*]", "the array of vertices"]
+							]
+						},
+						"Clear" : {
+							"description" : "Makes the polygon empty."
+						},
+						"Clone" : {
+							"description" : "Clones the polygon.",
+							"returns" : [
+								["ContourPolygon2D", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"Polygon" : {
+					"description" : "Represents a 3D polygon.",
+					"functions" : {
+						"AddVertex" : {
+							"description" : "Adds a vertex to the polygon.",
+							"parameters" : [
+								["x", "number", "the x coordinate of the vertex"],
+								["y", "number", "the y coordinate of the vertex"],
+								["z", "number", "the z coordinate of the vertex"]
+							]
+						},
+						"AddVertexCoord" : {
+							"description" : "Adds a vertex coordinate to the polygon.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							]
+						},
+						"GetVertex" : {
+							"description" : "Returns the vertex with the given index.",
+							"parameters" : [
+								["index", "integer", "the index of the vertex"]
+							],
+							"returns" : [
+								["Coord", "the vertex"]
+							]
+						},
+						"VertexCount" : {
+							"description" : "Returns the vertex count of the polygon.",
+							"returns" : [
+								["integer", "vertex count"]
+							]
+						},
+						"GetNextVertex" : {
+							"description" : "Returns the vertex index after the given one.",
+							"parameters" : [
+								["index", "integer", "the vertex index"]
+							],
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"ReverseVertices" : {
+							"description" : "Reverses the orientation of the vertices."
+						},
+						"GetPrevVertex" : {
+							"description" : "Returns the vertex index before the given one.",
+							"parameters" : [
+								["index", "integer", "the vertex index"]
+							],
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"GetVertexAngle" : {
+							"description" : "Returns the angle of the given vertex.",
+							"parameters" : [
+								["index", "integer", "the vertex index"]
+							],
+							"returns" : [
+								["number", "the result"]
+							]
+						},
+						"GetNormal" : {
+							"description" : "Calculates the normal vector of the polygon.",
+							"returns" : [
+								["Vector", "the result"]
+							]
+						},
+						"ToPolygon2D" : {
+							"description" : "Converts the polygon to a 2D polygon.",
+							"returns" : [
+								["Polygon2D", "the result"]
+							]
+						},
+						"ToArray" : {
+							"description" : "Creates an array of vertices from polygon.",
+							"returns" : [
+								["Coord[*]", "the result"]
+							]
+						},
+						"FromArray" : {
+							"description" : "Creates the polygon from an array of vertices.",
+							"parameters" : [
+								["vertices", "Coord[*]", "the array of vertices"]
+							]
+						},
+						"Clear" : {
+							"description" : "Makes the polygon empty."
+						},
+						"ClearCache" : {
+							"description" : "Clears stored values from the polygon."
+						},
+						"Clone" : {
+							"description" : "Clones the polygon.",
+							"returns" : [
+								["Polygon", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"ContourPolygon" : {
+					"description" : "Represents a 3D polygon with more contours.",
+					"functions" : {
+						"AddVertex" : {
+							"description" : "Adds a vertex to the last contour of the polygon.",
+							"parameters" : [
+								["x", "number", "the x coordinate of the vertex"],
+								["y", "number", "the y coordinate of the vertex"],
+								["z", "number", "the z coordinate of the vertex"]
+							]
+						},
+						"AddVertexCoord" : {
+							"description" : "Adds a vertex coordinate to the last contour of the polygon.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							]
+						},
+						"AddContourVertex" : {
+							"description" : "Adds a vertex to the given contour of the polygon.",
+							"parameters" : [
+								["contourIndex", "integer", "the index of the contour"],
+								["x", "number", "the x coordinate of the vertex"],
+								["y", "number", "the y coordinate of the vertex"],
+								["z", "number", "the z coordinate of the vertex"]
+							]
+						},
+						"AddContourVertexCoord" : {
+							"description" : "Adds a vertex coordinate to the given contour of the polygon.",
+							"parameters" : [
+								["contourIndex", "integer", "the index of the contour"],
+								["coord", "Coord", "the coordinate"]
+							]
+						},
+						"VertexCount" : {
+							"description" : "Returns the vertex count of the polygon.",
+							"returns" : [
+								["integer", "vertex count"]
+							]
+						},
+						"ContourVertexCount" : {
+							"description" : "Returns the vertex count of the given contour of the polygon.",
+							"parameters" : [
+								["contourIndex", "integer", "the index of the contour"]
+							],
+							"returns" : [
+								["integer", "vertex count"]
+							]
+						},
+						"AddContour" : {
+							"description" : "Adds a contour to the polygon. If the given contour is null, an empty contour is added to the polygon.",
+							"parameters" : [
+								["contour", "Polygon", "the new contour"]
+							]
+						},
+						"GetLastContour" : {
+							"description" : "Returns the last contour of the polygon.",
+							"returns" : [
+								["Polygon", "the result"]
+							]
+						},
+						"GetContourVertex" : {
+							"description" : "Returns the vertex of the given contour with the given index.",
+							"parameters" : [
+								["contourIndex", "integer", "the index of the contour"],
+								["vertexIndex", "integer", "the index of the vertex"]
+							],
+							"returns" : [
+								["Coord", "the vertex"]
+							]
+						},
+						"GetContour" : {
+							"description" : "Returns the contour with the given index.",
+							"parameters" : [
+								["contourIndex", "integer", "the index of the contour"]
+							],
+							"returns" : [
+								["Polygon", "the contour"]
+							]
+						},
+						"ContourCount" : {
+							"description" : "Returns the contour count of the polygon.",
+							"returns" : [
+								["integer", "contour count"]
+							]
+						},
+						"ToContourPolygon2D" : {
+							"description" : "Converts the polygon to a 2D polygon.",
+							"returns" : [
+								["ContourPolygon2D", "the result"]
+							]
+						},
+						"ToArray" : {
+							"description" : "Creates an array of vertices from polygon. The result contains null values between contours.",
+							"returns" : [
+								["Coord[*]", "the result"]
+							]
+						},
+						"FromArray" : {
+							"description" : "Creates the polygon from an array of vertices. The input should contain null values between contours.",
+							"parameters" : [
+								["vertices", "Coord[*]", "the array of vertices"]
+							]
+						},
+						"Clear" : {
+							"description" : "Makes the polygon empty."
+						},
+						"Clone" : {
+							"description" : "Clones the polygon.",
+							"returns" : [
+								["ContourPolygon", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"Octree" : {
+					"description" : "Defines an octree. The octree contains each coordinate only once.",
+					"parameters" : [
+						["box", "Box", "bounding box"],
+						["maxCoordNumInNodes", "integer", "maximum number of coordinates in a node"]
+					],
+					"functions" : {
+						"AddCoord" : {
+							"description" : "Adds a coordinate to the octree. The return value is the stored index of the coordinate. If the coordinate was already in the octree, it returns the existing index.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							],
+							"returns" : [
+								["integer", "the stored index of the coordinate"]
+							]
+						},
+						"FindCoord" : {
+							"description" : "Finds a coordinate in the octree, and returns the stored index of it. The return value is -1 if the coordinate does not exist.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"]
+							],
+							"returns" : [
+								["integer", "the stored index of the coordinate"]
+							]
+						},
+						"FindCoordInNode" : {
+							"description" : "Finds a coordinate in a node.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"],
+								["node", "object", "the node"]
+							],
+							"returns" : [
+								["integer", "the stored index of the coordinate"]
+							]
+						},
+						"AddCoordToNode" : {
+							"description" : "Adds a coordinate to a node.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"],
+								["root", "object", "the root node"]
+							],
+							"returns" : [
+								["integer", "the stored index of the coordinate"]
+							]
+						},
+						"FindNodeForCoord" : {
+							"description" : "Finds a node for a coordinate.",
+							"parameters" : [
+								["coord", "Coord", "the coordinate"],
+								["node", "object", "the starting node"]
+							],
+							"returns" : [
+								["object", "the found node"]
+							]
+						},
+						"SplitNode" : {
+							"description" : "Splits a node to subnodes.",
+							"parameters" : [
+								["node", "object", "the node"]
+							],
+							"returns" : [
+								["boolean", "success"]
+							]
+						},
+						"CreateNewNode" : {
+							"description" : "Creates a new node.",
+							"parameters" : [
+								["parent", "object", "the parent node"],
+								["box", "Box", "the box of the node"]
+							],
+							"returns" : [
+								["object", "the result"]
+							]
+						}
+					}
+				},
+				"TriangleOctree" : {
+					"description" : "Defines an octree which stores triangles. Every triangle is placed in the smallest possible node which contains all of its vertices.",
+					"parameters" : [
+						["box", "Box", "bounding box"]
+					],
+					"functions" : {
+						"AddTriangle" : {
+							"description" : "Adds a triangle to the octree.",
+							"parameters" : [
+								["v0, v1, v2", "Coord", "the vertices of the triangle"],
+								["userData", "anything", "user data for the triangle"]
+							]
+						},
+						"AddTriangleToNode" : {
+							"description" : "Adds a coordinate to a node.",
+							"parameters" : [
+								["v0, v1, v2", "Coord", "the vertices of the triangle"],
+								["root", "object", "the root node"]
+							],
+							"returns" : [
+								["boolean", "success"]
+							]
+						},
+						"CreateNewNode" : {
+							"description" : "Creates a new node.",
+							"parameters" : [
+								["parent", "object", "the parent node"],
+								["box", "Box", "the box of the node"]
+							],
+							"returns" : [
+								["object", "the result"]
+							]
+						}
+					}
+				},
+				"BSPTree" : {
+					"description" : "Defines a BSP tree.",
+					"functions" : {
+						"AddPolygon" : {
+							"description" : "Adds a polygon to the tree.",
+							"parameters" : [
+								["polygon", "Polygon", "the polygon"],
+								["userData", "anything", "user data for polygon"]
+							],
+							"returns" : [
+								["boolean", "success"]
+							]
+						},
+						"Traverse" : {
+							"description" : "Traverses the tree and calls a function on node found.",
+							"parameters" : [
+								["nodeFound", "function", "the callback function"]
+							]
+						},
+						"TraverseNode" : {
+							"description" : "Traverses a node and its children and calls a function on node found.",
+							"parameters" : [
+								["node", "object", "the node"],
+								["nodeFound", "function", "the callback function"]
+							]
+						},
+						"GetNodes" : {
+							"description" : "Returns the nodes as an array.",
+							"returns" : [
+								["object[*]", "the result"]
+							]
+						},
+						"GetNodes" : {
+							"description" : "Count nodes.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"AddPolygonToNode" : {
+							"description" : "Adds a polygon to a node.",
+							"parameters" : [
+								["node", "object", "the node"],
+								["polygon", "Polygon", "the polygon"],
+								["userData", "anything", "user data for polygon"]
+							],
+							"returns" : [
+								["boolean", "success"]
+							]
+						},
+						"AddInsidePolygonsToNode" : {
+							"description" : "Adds inside polygons to a node.",
+							"parameters" : [
+								["node", "object", "the node"],
+								["polygon", "Polygon[*]", "the polygons"],
+								["userData", "anything", "user data for polygons"]
+							]
+						},
+						"AddOutsidePolygonsToNode" : {
+							"description" : "Adds outside polygons to a node.",
+							"parameters" : [
+								["node", "object", "the node"],
+								["polygon", "Polygon[*]", "the polygons"],
+								["userData", "anything", "user data for polygons"]
+							]
+						},
+						"CreateNewNode" : {
+							"description" : "Creates a new node.",
+							"returns" : [
+								["object", "the result"]
+							]
+						}
+					}
+				},
+				"Ray" : {
+					"description" : "Represents a Ray.",
+					"parameters" : [
+						["origin", "Coord", "the starting point of the ray"],
+						["direction", "Vector", "the direction of the ray"],
+						["length", "number", "the length of the ray, null means infinite ray"]
+					],
+					"functions" : {
+						"Set" : {
+							"description" : "Sets the ray.",
+							"parameters" : [
+								["origin", "Coord", "the starting point of the ray"],
+								["direction", "Vector", "the direction of the ray"],
+								["length", "number", "the length of the ray, null means infinite ray"]
+							]
+						},
+						"GetOrigin" : {
+							"description" : "Returns the origin of the ray.",
+							"returns" : [
+								["Coord", "the result"]
+							]
+						},
+						"GetDirection" : {
+							"description" : "Returns the direction of the ray.",
+							"returns" : [
+								["Vector", "the result"]
+							]
+						},
+						"IsLengthReached" : {
+							"description" : "Returns if the given length is greater than the length of the ray. Always return false in case of infinite ray.",
+							"returns" : [
+								["boolean", "the result"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the ray.",
+							"returns" : [
+								["Ray", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"Path2D" : {
+					"description" : "Helper class for building polygons",
+					"parameters" : [
+						["settings", "object", "path settings"]
+					],
+					"functions" : {
+						"MoveTo" : {
+							"description" : "Moves the current position to the given position.",
+							"parameters" : [
+								["x", "number", "new x position"],
+								["y", "number", "new y position"]
+							]
+						},
+						"LineTo" : {
+							"description" : "Draws a line from current position to the given position.",
+							"parameters" : [
+								["x", "number", "line end x position"],
+								["y", "number", "line end y position"]
+							]
+						},
+						"CubicBezierTo" : {
+							"description" : "Draws a cubic bezier curve from the current position to the given position.",
+							"parameters" : [
+								["x", "number", "curve end x position"],
+								["y", "number", "curve end y position"],
+								["cp1x", "number", "first control point x position"],
+								["cp1y", "number", "first control point y position"],
+								["cp2x", "number", "second control point x position"],
+								["cp2y", "number", "second control point y position"]
+							]
+						},
+						"Close" : {
+							"description" : "Closes the current polygon."
+						},
+						"PolygonCount" : {
+							"description" : "Returns the polygon count of the path.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"GetPolygon" : {
+							"description" : "Returns the polygons from the path at the given index.",
+							"parameters" : [
+								["index", "integer", "the polygon index"]
+							],
+							"returns" : [
+								["ContourPolygon2D", "the result"]
+							]
+						},
+						"GetPolygons" : {
+							"description" : "Returns the polygons from the path.",
+							"returns" : [
+								["ContourPolygon2D[*]", "the result"]
+							]
+						},
+						"GetCurrentPolygon" : {
+							"description" : "Returns the current polygon.",
+							"returns" : [
+								["Polygon2D", "the result"]
+							]
+						},
+						"AddPolygonPoint" : {
+							"description" : "Adds a point to the current polygon.",
+							"parameters" : [
+								["x", "number", "the x position of the point"],
+								["y", "number", "the y position of the point"]
+							]
+						}
+					}
+				}
+			},
+			"enums" : {
+				"Orientation" : {
+					"description" : "Orientation of coordinates.",
+					"values" : [
+						["Invalid", "invalid orientation or collinear"],
+						["CounterClockwise", "counter clockwise orientation"],
+						["Clockwise", "clockwise orientation"]
+					]
+				},
+				"CoordSectorPosition2D" : {
+					"description" : "Position of a coordinate and a sector.",
+					"values" : [
+						["CoordInsideOfSector", "coordinate lies inside of sector"],
+						["CoordOnSectorEndCoord", "coordinate lies at the end of the sector"],
+						["CoordOutsideOfSector", "coordinate lies outside of the sector"]
+					]
+				},
+				"SectorSectorPosition2D" : {
+					"description" : "Position of two sectors.",
+					"values" : [
+						["SectorsDontIntersect", "sectors do not intersect"],
+						["SectorsIntersectCoincident", "sectors intersect coincident"],
+						["SectorsIntersectEndPoint", "sectors intersect at end point"],
+						["SectorsIntersectOnePoint", "sectors intersect one point"]
+					]
+				},
+				"CoordSectorPosition" : {
+					"description" : "Position of a coordinate and a sector.",
+					"values" : [
+						["CoordInsideOfSector", "coordinate lies inside of sector"],
+						["CoordOnSectorEndCoord", "coordinate lies at the end of the sector"],
+						["CoordOutsideOfSector", "coordinate lies outside of the sector"]
+					]
+				},
+				"CoordLinePosition2D" : {
+					"description" : "Position of a coordinate and a line.",
+					"values" : [
+						["CoordOnLine", "coordinate lies on the line"],
+						["CoordAtLineLeft", "coordinate lies on the left side of the line"],
+						["CoordAtLineRight", "coordinate lies on the left side right the line"]
+					]
+				},
+				"LineLinePosition2D" : {
+					"description" : "Position of two lines.",
+					"values" : [
+						["LinesDontIntersect", "lines do not intersect"],
+						["LinesIntersectsCoincident", "lines intersect coincident"],
+						["LinesIntersectsOnePoint", "lines intersect one point"]
+					]
+				},
+				"CoordLinePosition" : {
+					"description" : "Position of a coordinate and a line.",
+					"values" : [
+						["CoordOnLine", "coordinate lies on the line"],
+						["CoordOutsideOfLine", "coordinate lies outside of the line"]
+					]
+				},
+				"LineLinePosition" : {
+					"description" : "Position of two lines.",
+					"values" : [
+						["LinesDontIntersect", "lines do not intersect"],
+						["LinesIntersectsCoincident", "lines intersect coincident"],
+						["LinesIntersectsOnePoint", "lines intersect one point"]
+					]
+				},
+				"CoordPlanePosition" : {
+					"description" : "Position of a coordinate and a plane.",
+					"values" : [
+						["CoordOnPlane", "coordinate lies on the plane"],
+						["CoordInFrontOfPlane", "coordinate lies in front of of the plane"],
+						["CoordAtBackOfPlane", "coordinate lies at the back of the plane"]
+					]
+				},
+				"LinePlanePosition" : {
+					"description" : "Position of a line and a plane.",
+					"values" : [
+						["LineParallelToPlane", "line is parallel to the plane"],
+						["LineIntersectsPlane", "line intersects the plane"]
+					]
+				},
+				"Complexity" : {
+					"description" : "Complexity of a polygon.",
+					"values" : [
+						["Invalid", "invalid polygon"],
+						["Convex", "convex polygon"],
+						["Concave", "concave polygon"],
+						["Complex", "complex polygon (contains holes)"]
+					]
+				},
+				"CoordPolygonPosition2D" : {
+					"description" : "Position of a coordinate and a polygon.",
+					"values" : [
+						["OnVertex", "coordinate lies on a vertex of the polygon"],
+						["OnEdge", "coordinate lies on an edge of the polygon"],
+						["Inside", "coordinate lies inside the polygon"],
+						["Outside", "coordinate lies outside of the polygon"]
+					]
+				},
+				"SectorPolygonPosition2D" : {
+					"description" : "Position of a sector and a polygon.",
+					"values" : [
+						["IntersectionOnePoint", "sector intersects polygon"],
+						["IntersectionCoincident", "sector lies on an edge of the polygon"],
+						["IntersectionOnVertex", "sector intersects polygon on a vertex"],
+						["NoIntersection", "sector does not intersect polygon"]
+					]
+				}
+			}
+		},
+		"Modeler" : {
+			"functions" : {
+				"HexColorToRGBComponents" : {
+					"description" : "Converts hex color strings to RGB components.",
+					"parameters" : [
+						["hexColor", "string", "the hex color"]
+					],
+					"returns" : [
+						["integer[3]", "the RGB components"]
+					]
+				},
+				"HexColorToNormalizedRGBComponents" : {
+					"description" : "Converts hex color strings to normalized (between 0.0 and 1.0) RGB components.",
+					"parameters" : [
+						["hexColor", "string", "the hex color"]
+					],
+					"returns" : [
+						["number[3]", "the RGB components"]
+					]
+				},
+				"HexColorToRGBColor" : {
+					"description" : "Converts hex color strings to RGB color.",
+					"parameters" : [
+						["hexColor", "string", "the hex color string"]
+					],
+					"returns" : [
+						["integer", "the RGB value"]
+					]
+				},
+				"RGBComponentsToHexColor" : {
+					"description" : "Converts RGB components to hex color.",
+					"parameters" : [
+						["red", "integer", "the red component"],
+						["green", "integer", "the green component"],
+						["blue", "integer", "the blue component"]
+					],
+					"returns" : [
+						["integer", "the hex value"]
+					]
+				},
+				"CalculateBodyVertexToPolygon" : {
+					"description" : "Calculates an array which contains array of the connected polygon indices for all vertex indices in the body. The result is an array of array of polygon indices.",
+					"parameters" : [
+						["body", "Body", "the body"]
+					],
+					"returns" : [
+						["integer[*][*]", "the result"]
+					]
+				},
+				"IsSolidBody" : {
+					"description" : "Returns if a given body is solid. It means that every edges of the body has two polygon neighbours.",
+					"parameters" : [
+						["body", "Body", "the body"]
+					],
+					"returns" : [
+						["boolean", "the result"]
+					]
+				},
+				"CheckSolidBody" : {
+					"description" : "Returns if a given body solid body is correct. It means that every edges of the body has two polygon neighbours, and there are no edge in the body which appears twice with the same direction.",
+					"parameters" : [
+						["body", "Body", "the body"]
+					],
+					"returns" : [
+						["boolean", "the result"]
+					]
+				},
+				"TraversePgonsAlongEdges" : {
+					"description" : "Traverses polygons along edges. The given callback function called on every found polygon. The return value of the callback means if the traverse should continue along the edges of the current polygon.",
+					"parameters" : [
+						["pgonIndex", "integer", "the polygon index to start from"],
+						["adjacencyInfo", "AdjacencyInfo", "the adjacency info"],
+						["onPgonFound", "function", "the callback"]
+					],
+					"returns" : [
+						["boolean", "the result"]
+					]
+				},
+				"AddVertexToBody" : {
+					"description" : "Adds a vertex to an existing body.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["x", "number", "the x coordinate of the vertex"],
+						["y", "number", "the y coordinate of the vertex"],
+						["z", "number", "the z coordinate of the vertex"]
+					]
+				},
+				"AddPointToBody" : {
+					"description" : "Adds a point to an existing body.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["vertex", "integer", "the vertex index stored in the body"]
+					]
+				},
+				"AddLineToBody" : {
+					"description" : "Adds a line to an existing body.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["beg", "integer", "begin vertex index stored in the body"],
+						["end", "integer", "end vertex index stored in the body"]
+					]
+				},
+				"AddPolygonToBody" : {
+					"description" : "Adds a polygon to an existing body.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["vertices", "integer[*]", "array of vertex indices stored in the body"]
+					]
+				},
+				"CheckBody" : {
+					"description" : "Checks if the body is correct. It means that every polygon has at least three vertices, and every point, line and polygon vertex index is valid.",
+					"parameters" : [
+						["body", "Body", "the body"]
+					],
+					"returns" : [
+						["boolean", "the result"]
+					]
+				},
+				"CalculateBodyPolygonNormal" : {
+					"description" : "Calculates a normal vector for a polygon stored in the body.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["index", "integer", "the polygon index"]
+					],
+					"returns" : [
+						["Vector", "the result"]
+					]
+				},
+				"CalculateBodyPolygonNormals" : {
+					"description" : "Calculates polygon normal vectors for all polygons stored in the body.",
+					"parameters" : [
+						["body", "Body", "the body"]
+					],
+					"returns" : [
+						["Vector[*]", "the result"]
+					]
+				},
+				"CalculateBodyVertexNormals" : {
+					"description" : "Calculates vertex normal vectors for all vertices stored in the body. The result is an array of array with vertex normal vectors.",
+					"parameters" : [
+						["body", "Body", "the body"]
+					],
+					"returns" : [
+						["Vector[*][*]", "the result"]
+					]
+				},
+				"CalculatePolygonCurveGroups" : {
+					"description" : "Calculates the curve groups for a given polygon.",
+					"parameters" : [
+						["polygon", "Polygon|Polygon2D", "the polygon"],
+						["curveAngle", "number", "the curve angle"]
+					],
+					"returns" : [
+						["integer[*]", "the curve groups"]
+					]
+				},
+				"CalculatePolygonCentroid" : {
+					"description" : "Calculates the centroid of a polygon stored in the body.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["index", "integer", "the polygon index"]
+					],
+					"returns" : [
+						["Coord", "the result"]
+					]
+				},
+				"MakeBodyInsideOut" : {
+					"description" : "Reverses all polygons orientation in the body.",
+					"parameters" : [
+						["body", "Body", "the body"]
+					]
+				},
+				"SoftMoveBodyVertex" : {
+					"description" : "Moves a vertex and its nearby vertices depending on gaussian function.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["index", "integer", "the vertex index to move"],
+						["radius", "number", "the radius of the movement"],
+						["direction", "Vector", "the direction of the movement"],
+						["distance", "number", "the distance of the movement"]
+					]
+				},
+				"GenerateWireBody" : {
+					"description" : "Generates a body which contains only the lines from the given body.",
+					"parameters" : [
+						["body", "Body", "the original body"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"TriangulateWithCentroids" : {
+					"description" : "Triangulates all polygons of the body by connecting all polygon vertices with the centroid vertex of the polygon.",
+					"parameters" : [
+						["body", "Body", "the body"]
+					]
+				},
+				"TriangulatePolygons" : {
+					"description" : "Triangulates all polygons of the body.",
+					"parameters" : [
+						["body", "Body", "the body"]
+					]
+				},
+				"GenerateRandomMaterials" : {
+					"description" : "Generates random materials for a body. A seed number can be specified.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["materials", "MaterialSet", "the materials"],
+						["seeded", "boolean", "seeded random generation"]
+					]
+				},
+				"AddBodyToBSPTree" : {
+					"description" : "Adds a body to a BSP tree.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["bspTree", "BSPTree", "the BSP tree"],
+						["id", "anything", "the id for added polygons"]
+					]
+				},
+				"CalculatePlanarTextureCoord" : {
+					"description" : "Calculates the planar texture coordinate for a coordinate.",
+					"parameters" : [
+						["coord", "Coord", "the coordinate"],
+						["system", "CoordSystem", "the coordinate system"]
+					],
+					"returns" : [
+						["Coord2D", "the result"]
+					]
+				},
+				"CalculateCubicTextureCoord" : {
+					"description" : "Calculates the cubic texture coordinate for a coordinate.",
+					"parameters" : [
+						["coord", "Coord", "the coordinate"],
+						["normal", "Vector", "the normal vector for calculation"],
+						["system", "CoordSystem", "the coordinate system"]
+					],
+					"returns" : [
+						["Coord2D", "the result"]
+					]
+				},
+				"CalculateCylindricalTextureCoord" : {
+					"description" : "Calculates the cylindrical texture coordinate for a coordinate.",
+					"parameters" : [
+						["coord", "Coord", "the coordinate"],
+						["normal", "Vector", "the normal vector for calculation"],
+						["system", "CoordSystem", "the coordinate system"]
+					],
+					"returns" : [
+						["Coord2D", "the result"]
+					]
+				},
+				"CalculatePolygonPlanarTextureCoords" : {
+					"description" : "Calculates the planar texture coordinates for a polygon.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["index", "integer", "the polygon index"]
+					],
+					"returns" : [
+						["Coord2D[*]", "the result"]
+					]
+				},
+				"CalculatePolygonCubicTextureCoords" : {
+					"description" : "Calculates the cubic texture coordinates for a polygon.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["index", "integer", "the polygon index"],
+						["normal", "Vector", "the normal vector for calculation"]
+					],
+					"returns" : [
+						["Coord2D[*]", "the result"]
+					]
+				},
+				"CalculatePolygonCylindricalTextureCoords" : {
+					"description" : "Calculates the cylindrical texture coordinates for a polygon.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["index", "integer", "the polygon index"],
+						["normal", "Vector", "the normal vector for calculation"]
+					],
+					"returns" : [
+						["Coord2D[*]", "the result"]
+					]
+				},
+				"CalculateBodyPlanarTextureCoords" : {
+					"description" : "Calculates the planar texture coordinates for a body.",
+					"parameters" : [
+						["body", "Body", "the body"]
+					],
+					"returns" : [
+						["Coord2D[*][*]", "the result"]
+					]
+				},
+				"CalculateBodyCubicTextureCoords" : {
+					"description" : "Calculates the cubic texture coordinates for a body.",
+					"parameters" : [
+						["body", "Body", "the body"]
+					],
+					"returns" : [
+						["Coord2D[*][*]", "the result"]
+					]
+				},
+				"CalculateBodyCylindricalTextureCoords" : {
+					"description" : "Calculates the cylindrical texture coordinates for a body.",
+					"parameters" : [
+						["body", "Body", "the body"]
+					],
+					"returns" : [
+						["Coord2D[*][*]", "the result"]
+					]
+				},
+				"CalculateBodyTextureCoords" : {
+					"description" : "Calculates the texture coordinates for a body. The result is an array of arrays of texture coordinates.",
+					"parameters" : [
+						["body", "Body", "the body"]
+					],
+					"returns" : [
+						["Coord2D[*][*]", "the result"]
+					]
+				},
+				"CutBodyByPlane" : {
+					"description" : "Cuts a body by a plane.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["plane", "Plane", "the plane"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateRectangle" : {
+					"description" : "Generates a rectangle.",
+					"parameters" : [
+						["xSize", "number", "x size"],
+						["ySize", "number", "y size"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateCuboid" : {
+					"description" : "Generates a cuboid.",
+					"parameters" : [
+						["xSize", "number", "x size"],
+						["ySize", "number", "y size"],
+						["zSize", "number", "z size"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateCuboidSides" : {
+					"description" : "Generates the specified sides of a cuboid. The last parameter is a boolean array which defines sides visibility.",
+					"parameters" : [
+						["xSize", "number", "x size"],
+						["ySize", "number", "y size"],
+						["zSize", "number", "z size"],
+						["sides", "boolean[]", "sides visibility"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateSegmentedRectangle" : {
+					"description" : "Generates a segmented rectangle.",
+					"parameters" : [
+						["xSize", "number", "x size"],
+						["ySize", "number", "y size"],
+						["xSegmentation", "integer", "segmentation along x side"],
+						["ySegmentation", "integer", "segmentation along y side"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateSegmentedCuboid" : {
+					"description" : "Generates a segmented cuboid.",
+					"parameters" : [
+						["xSize", "number", "x size"],
+						["ySize", "number", "y size"],
+						["zSize", "number", "z size"],
+						["segmentation", "integer", "segmentation of the sides"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateCircle" : {
+					"description" : "Generates a circle.",
+					"parameters" : [
+						["radius", "number", "the radius of the circle"],
+						["segmentation", "integer", "the segmentation of the circle"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateSphere" : {
+					"description" : "Generates a sphere.",
+					"parameters" : [
+						["radius", "number", "the radius of the sphere"],
+						["segmentation", "integer", "the segmentation of the sphere"],
+						["isCurved", "boolean", "create smooth surfaces"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateTriangulatedSphere" : {
+					"description" : "Generates a sphere from triangles.",
+					"parameters" : [
+						["radius", "number", "the radius of the sphere"],
+						["iterations", "integer", "the iteration number"],
+						["isCurved", "boolean", "create smooth surfaces"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateCylinder" : {
+					"description" : "Generates a cylinder.",
+					"parameters" : [
+						["radius", "number", "the radius of the cylinder"],
+						["height", "number", "the height of the cylinder"],
+						["segmentation", "integer", "the segmentation of the top and bottom polygons"],
+						["withTopAndBottom", "boolean", "generate top and bottom polygons"],
+						["isCurved", "boolean", "create smooth surfaces"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GeneratePie" : {
+					"description" : "Generates a pie.",
+					"parameters" : [
+						["radius", "number", "the radius of the pie"],
+						["height", "number", "the height of the pie"],
+						["angle", "number", "the angle of the pie"],
+						["segmentation", "integer", "the segmentation of the top and bottom polygons"],
+						["withTopAndBottom", "boolean", "generate top and bottom polygons"],
+						["isCurved", "boolean", "create smooth surfaces"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateCone" : {
+					"description" : "Generates a cone.",
+					"parameters" : [
+						["topRadius", "number", "the top radius of the cone"],
+						["bottomRadius", "number", "the bottom radius of the cone"],
+						["height", "number", "the height of the cone"],
+						["segmentation", "integer", "the segmentation of the top and bottom polygons"],
+						["withTopAndBottom", "boolean", "generate top and bottom polygons"],
+						["isCurved", "boolean", "create smooth surfaces"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GeneratePrismGeometry" : {
+					"description" : "Generates a prism defined by bottom and top vertices polygon.",
+					"parameters" : [
+						["bottomVertices", "Coord[*]", "bottom vertices"],
+						["topVertices", "Coord[*]", "top vertices"],
+						["withTopAndBottom", "boolean", "generate top and bottom polygons"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GeneratePrismFromPolygon" : {
+					"description" : "Generates a prism defined by a polygon.",
+					"parameters" : [
+						["polygon", "Polygon2D", "the base polygon"],
+						["height", "number", "the height of the prism"],
+						["withTopAndBottom", "boolean", "generate top and bottom polygons"],
+						["curveAngle", "number", "if not null, defines the curve angle of the prism"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GeneratePrism" : {
+					"description" : "Generates a prism defined by a polygon. The base polygon is an array of coordinates which will be offseted in the given direction.",
+					"parameters" : [
+						["basePolygon", "Coord[*]", "the base polygon"],
+						["direction", "Vector", "the vector of the offset"],
+						["height", "number", "the height of the prism"],
+						["withTopAndBottom", "boolean", "generate top and bottom polygons"],
+						["curveAngle", "number", "if not null, defines the curve angle of the prism"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GeneratePrismWithHole" : {
+					"description" : "Generates a prism defined by a polygon. The polygon can contain null values which defines the end of the current contour. The holes have to be in reversed orientation than the main contour.",
+					"parameters" : [
+						["basePolygon", "Coord[*]", "the base polygon which can contain null values"],
+						["direction", "Vector", "the vector of the offset"],
+						["height", "number", "the height of the prism"],
+						["withTopAndBottom", "boolean", "generate top and bottom polygons"],
+						["curveAngle", "number", "if not null, defines the curve angle of the prism"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GeneratePrismsFromPath2D" : {
+					"description" : "Generates a prism from the given path.",
+					"parameters" : [
+						["path", "Path2D", "the path"],
+						["height", "number", "the height of the prism"],
+						["width", "number", "the width of the prism sides"],
+						["withTopAndBottom", "boolean", "generate top and bottom polygons"]
+					],
+					"returns" : [
+						["Body[*]", "the result"]
+					]
+				},
+				"GeneratePrismShell" : {
+					"description" : "Generates a prism with the given width of sides.",
+					"parameters" : [
+						["basePolygon", "Coord[*]", "the base polygon"],
+						["direction", "Vector", "the vector of the offset"],
+						["height", "number", "the height of the prism"],
+						["width", "number", "the width of the prism sides"],
+						["withTopAndBottom", "boolean", "generate top and bottom polygons"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateCylinderShell" : {
+					"description" : "Generates a cylinder with the given width of sides.",
+					"parameters" : [
+						["radius", "number", "the radius of the cylinder"],
+						["height", "number", "the height of the cylinder"],
+						["width", "number", "the width of the cylinder sides"],
+						["segmentation", "integer", "the segmentation of the top and bottom polygons"],
+						["withTopAndBottom", "boolean", "generate top and bottom polygons"],
+						["isCurved", "boolean", "create smooth surfaces"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateLineShell" : {
+					"description" : "Generates a polyline with width and height.",
+					"parameters" : [
+						["basePolyLine", "Coord[*]", "the base polyline"],
+						["direction", "Vector", "the vector of the offset"],
+						["height", "number", "the height of the shell"],
+						["width", "number", "the width of the shell"],
+						["withStartAndEnd", "boolean", "generate start and end polygons"],
+						["withTopAndBottom", "boolean", "generate top and bottom polygons"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateTorus" : {
+					"description" : "Generates a torus.",
+					"parameters" : [
+						["outerRadius", "number", "the outer radius of the torus"],
+						["innerRadius", "number", "the inner radius of the torus"],
+						["outerSegmentation", "integer", "the outer segmentation of the torus"],
+						["innerSegmentation", "integer", "the inner segmentation of the torus"],
+						["isCurved", "boolean", "create smooth surfaces"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GeneratePolyTorus" : {
+					"description" : "Generates a torus with a polygon cross section.",
+					"parameters" : [
+						["basePolygon", "Coord2D[*]", "the cross section polygon of the torus"],
+						["outerRadius", "number", "the outer radius of the torus"],
+						["outerSegmentation", "integer", "the outer segmentation of the torus"],
+						["isCurved", "boolean", "create smooth surfaces"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateRuledFromSectors" : {
+					"description" : "Generates a ruled surface between two sectors.",
+					"parameters" : [
+						["aSector", "Sector", "the first sector"],
+						["bSector", "Sector", "the second sector"],
+						["lineSegmentation", "integer", "the segmentation along sectors"],
+						["meshSegmentation", "integer", "the segmentation along surface"],
+						["isCurved", "boolean", "create smooth surfaces"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateGrid" : {
+					"description" : "Generates a planar grid.",
+					"parameters" : [
+						["xSize", "number", "the x size"],
+						["ySize", "number", "the y size"],
+						["xSegmentation", "integer", "the segmentation along x axis"],
+						["ySegmentation", "integer", "the segmentation along y axis"],
+						["isCurved", "boolean", "create smooth surfaces"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateSquareGrid" : {
+					"description" : "Generates a planar square grid.",
+					"parameters" : [
+						["size", "number", "the size"],
+						["segmentation", "integer", "the segmentation"],
+						["isCurved", "boolean", "create smooth surfaces"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateRuledFromSectorsWithHeight" : {
+					"description" : "Generates a ruled surface with height between two sectors.",
+					"parameters" : [
+						["aSector", "Sector", "the first sector"],
+						["bSector", "Sector", "the second sector"],
+						["lineSegmentation", "integer", "the segmentation along sectors"],
+						["meshSegmentation", "integer", "the segmentation along surface"],
+						["isCurved", "boolean", "create smooth surfaces"],
+						["height", "height", "the height"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateRuledFromCoords" : {
+					"description" : "Generates a ruled surface between two coordinate arrays. The two arrays should have the same length.",
+					"parameters" : [
+						["aCoords", "Coord[*]", "the first coordinate array"],
+						["bCoords", "Coord[*]", "the second coordinate array"],
+						["meshSegmentation", "integer", "the segmentation along surface"],
+						["isCurved", "boolean", "create smooth surfaces"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateRevolved" : {
+					"description" : "Generates a revolved surface by rotating a polyline around a given axis. If the angle is 360 degree, it can generate top and bottom polygons.",
+					"parameters" : [
+						["polyLine", "Coord[*]", "the polyline"],
+						["axis", "Sector", "the axis"],
+						["angle", "number", "the angle"],
+						["segmentation", "integer", "the segmentation"],
+						["withTopAndBottom", "boolean", "generate top and bottom polygons"],
+						["curveMode", "string", "'None', 'CurveSegments', or 'CurveAll'"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateTube" : {
+					"description" : "Generates a tube from a given array of polygons. All of the polygons should have same number of vertices.",
+					"parameters" : [
+						["basePolygons", "Coord[*][*]", "the array of polygons"],
+						["withStartAndEnd", "boolean", "generate start and end polygons"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateFunctionSurface" : {
+					"description" : "Generates the surface of a given function.",
+					"parameters" : [
+						["function3D", "function", "the callback function for get surface point"],
+						["intervalMin", "Coord2D", "the minimum of the interval"],
+						["intervalMax", "Coord2D", "the maximum of the interval"],
+						["segmentation", "integer", "the segmentation"],
+						["isCurved", "boolean", "create smooth surfaces"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateFunctionSurfaceSolid" : {
+					"description" : "Generates the surface of a given function with a solid body.",
+					"parameters" : [
+						["function3D", "function", "the callback function for get surface point"],
+						["intervalMin", "Coord2D", "the minimum of the interval"],
+						["intervalMax", "Coord2D", "the maximum of the interval"],
+						["segmentation", "integer", "the segmentation"],
+						["isCurved", "boolean", "create smooth surfaces"],
+						["bottomZ", "number", "the bottom z coordinate of the solid"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"ExplodeBody" : {
+					"description" : "Explodes a body to primitives. The function calls callback functions on geometry start and end, and when a triangle or a line is created.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["materials", "MaterialSet", "the materials"],
+						["explodeData", "object", "the parameters and callback functions of explode"]
+					],
+					"returns" : [
+						["boolean", "success"]
+					]
+				},
+				"ExportBodyContentToStl" : {
+					"description" : "Exports a body content to stl.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["name", "string", "name the body"],
+						["hasConvexPolygons", "boolean", "the body has only convex polygons"]
+					],
+					"returns" : [
+						["string", "the result"]
+					]
+				},
+				"ExportBodyToStl" : {
+					"description" : "Exports a body to stl.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["name", "string", "name the body"],
+						["hasConvexPolygons", "boolean", "the body has only convex polygons"]
+					],
+					"returns" : [
+						["string", "the result"]
+					]
+				},
+				"ExportModelToStl" : {
+					"description" : "Exports a model to stl.",
+					"parameters" : [
+						["model", "Model", "the model"],
+						["name", "string", "name the model"],
+						["hasConvexPolygons", "boolean", "the model has only convex polygons"]
+					],
+					"returns" : [
+						["string", "the result"]
+					]
+				},
+				"ExportBodyContentToObj" : {
+					"description" : "Exports a body content to obj.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["vertexOffset", "integer", "vertex index offset"],
+						["normalOffset", "integer", "normal index offset"]
+					],
+					"returns" : [
+						["string", "the result"]
+					]
+				},
+				"ExportBodyToObj" : {
+					"description" : "Exports a body to obj.",
+					"parameters" : [
+						["body", "Body", "the body"]
+					],
+					"returns" : [
+						["string", "the result"]
+					]
+				},
+				"ExportModelToObj" : {
+					"description" : "Exports a model to obj.",
+					"parameters" : [
+						["model", "Model", "the model"]
+					],
+					"returns" : [
+						["string", "the result"]
+					]
+				},
+				"ExportMaterialsToGdl" : {
+					"description" : "Exports a material container to gdl.",
+					"parameters" : [
+						["materials", "MaterialSet", "the material container"]
+					],
+					"returns" : [
+						["string", "the result"]
+					]
+				},
+				"ExportBodyGeometryToGdl" : {
+					"description" : "Exports a body geometry to gdl.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["writeMaterials", "boolean", "write materials"]
+					],
+					"returns" : [
+						["string", "the result"]
+					]
+				},
+				"ExportBodyToGdl" : {
+					"description" : "Exports a body to gdl.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["materials", "MaterialSet", "the material container"]
+					],
+					"returns" : [
+						["string", "the result"]
+					]
+				},
+				"ExportModelToGdl" : {
+					"description" : "Exports a model to gdl.",
+					"parameters" : [
+						["model", "Model", "the model"],
+						["materials", "MaterialSet", "the material container"]
+					],
+					"returns" : [
+						["string", "the result"]
+					]
+				},
+				"ConvertTriangleBodyToOctree" : {
+					"description" : "Converts a triangle body to triangle octree.",
+					"parameters" : [
+						["body", "TriangleBody", "the body"]
+					],
+					"returns" : [
+						["TriangleOctree", "the result"]
+					]
+				},
+				"ConvertBodyToTriangleBody" : {
+					"description" : "Converts a body to triangle body.",
+					"parameters" : [
+						["body", "Body", "the body"]
+					],
+					"returns" : [
+						["TriangleBody", "the result"]
+					]
+				},
+				"ConvertModelToTriangleModel" : {
+					"description" : "Converts a model to triangle model.",
+					"parameters" : [
+						["model", "Model", "the model"]
+					],
+					"returns" : [
+						["TriangleModel", "the result"]
+					]
+				},
+				"ConvertTriangleModelToJsonData" : {
+					"description" : "Converts a triangle model to json data.",
+					"parameters" : [
+						["model", "TriangleModel", "the model"]
+					],
+					"returns" : [
+						["object", "the result data"]
+					]
+				},
+				"MergeJsonDataMeshes" : {
+					"description" : "Merges meshes in json data.",
+					"parameters" : [
+						["jsonData", "object", "the original data"]
+					],
+					"returns" : [
+						["object", "the result data"]
+					]
+				},
+				"RayTriangleIntersection" : {
+					"description" : "Calculates intersection between a ray and a triangle.",
+					"parameters" : [
+						["ray", "Ray", "the ray"],
+						["v0, v1, v2", "Coord", "the vertices of the triangle"]
+					],
+					"returns" : [
+						["object", "the result data (position, distance) if intersection found, null otherwise"]
+					]
+				},
+				"RayBoxIntersection" : {
+					"description" : "Calculates intersection between a ray and a box.",
+					"parameters" : [
+						["ray", "Ray", "the ray"],
+						["min, max", "Coord", "the minimum and maximum points of the box"]
+					],
+					"returns" : [
+						["object", "the result data (position, distance) if intersection found, null otherwise"]
+					]
+				},
+				"RayOctreeIntersection" : {
+					"description" : "Calculates the nearest intersection between a ray and an octree.",
+					"parameters" : [
+						["ray", "Ray", "the ray"],
+						["octree", "Octree", "the octree"],
+						["intersection", "object", "the result data (position, distance, userData)"]
+					],
+					"returns" : [
+						["boolean", "true if found intersection, false otherwise"]
+					]
+				},
+				"RayTriangleBodyIntersection" : {
+					"description" : "Calculates the nearest intersection between a ray and a triangle body.",
+					"parameters" : [
+						["ray", "Ray", "the ray"],
+						["body", "TriangleBody", "the triangle body"],
+						["intersection", "object", "the result data (position, distance, triangleIndex)"]
+					],
+					"returns" : [
+						["boolean", "true if found intersection, false otherwise"]
+					]
+				},
+				"RayTriangleModelIntersection" : {
+					"description" : "Calculates the nearest intersection between a ray and a triangle model.",
+					"parameters" : [
+						["ray", "Ray", "the ray"],
+						["model", "TriangleModel", "the triangle model"],
+						["intersection", "object", "the result data (position, distance, triangleIndex, bodyIndex)"]
+					],
+					"returns" : [
+						["boolean", "true if found intersection, false otherwise"]
+					]
+				},
+				"RayTriangleModelIntersectionWithOctree" : {
+					"description" : "Calculates the nearest intersection between a ray and a triangle model. Caches the octrees for all bodies in the model.",
+					"parameters" : [
+						["ray", "Ray", "the ray"],
+						["model", "TriangleModel", "the triangle model"],
+						["intersection", "object", "the result data (position, distance, triangleIndex, bodyIndex)"]
+					],
+					"returns" : [
+						["boolean", "true if found intersection, false otherwise"]
+					]
+				}
+			},
+			"classes" : {
+				"Material" : {
+					"description" : "Defines a material. The parameter structure can contain the following values: ambient, diffuse, specular, shininess, opacity, texture, textureWidth, textureHeight.",
+					"parameters" : [
+						["parameters", "object", "parameters of the material"]
+					]
+				},
+				"MaterialSet" : {
+					"description" : "Defines a material container.",
+					"functions" : {
+						"AddMaterial" : {
+							"description" : "Adds a material to the container.",
+							"parameters" : [
+								["material", "Material", "the material"]
+							],
+							"returns" : [
+								["integer", "the index of the newly added material"]
+							]
+						},
+						"GetMaterial" : {
+							"description" : "Returns a material from the container.",
+							"parameters" : [
+								["index", "integer", "the index"]
+							],
+							"returns" : [
+								["Material", "the result"]
+							]
+						},
+						"GetDefaultMaterial" : {
+							"description" : "Returns the default material from the container. It is always exists.",
+							"returns" : [
+								["Material", "the result"]
+							]
+						},
+						"Count" : {
+							"description" : "Returns the material count of the container.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						}
+					}
+				},
+				"BodyVertex" : {
+					"description" : "Represents a vertex of a 3D body. The vertex contains only its position as a 3D coordinate.",
+					"parameters" : [
+						["position", "Coord", "the position"]
+					],
+					"functions" : {
+						"GetPosition" : {
+							"description" : "Returns the position of the vertex.",
+							"returns" : [
+								["Coord", "the result"]
+							]
+						},
+						"SetPosition" : {
+							"description" : "Sets the position of the vertex.",
+							"parameters" : [
+								["position", "Coord", "the position"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the vertex.",
+							"returns" : [
+								["BodyVertex", "the cloned instance"]
+							]
+						}
+					}
+				},
+				"BodyPoint" : {
+					"description" : "Represents a point in a 3D body. The point contains the vertex index stored in its 3D body, and a material index of a material defined outside of the body.",
+					"parameters" : [
+						["index", "integer", "the vertex index stored in the body"]
+					],
+					"functions" : {
+						"GetVertexIndex" : {
+							"description" : "Returns the body vertex index of the point.",
+							"returns" : [
+								["integer", "the stored vertex index"]
+							]
+						},
+						"SetVertexIndex" : {
+							"description" : "Sets the vertex index of the point.",
+							"parameters" : [
+								["index", "integer", "the vertex index"]
+							]
+						},
+						"HasMaterialIndex" : {
+							"description" : "Returns if the point has a material index.",
+							"returns" : [
+								["boolean", "the result"]
+							]
+						},
+						"GetMaterialIndex" : {
+							"description" : "Returns the point material index.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"SetMaterialIndex" : {
+							"description" : "Sets the point material index.",
+							"parameters" : [
+								["material", "integer", "the material index"]
+							]
+						},
+						"InheritAttributes" : {
+							"description" : "Inherits attributes (material) from an another point.",
+							"parameters" : [
+								["source", "BodyPoint", "the source point"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the point.",
+							"returns" : [
+								["BodyPoint", "the cloned instance"]
+							]
+						}
+					}
+				},
+				"BodyLine" : {
+					"description" : "Represents a line in a 3D body. The line contains begin and end indices of vertices stored in its 3D body, and a material index of a material defined outside of the body.",
+					"parameters" : [
+						["beg", "integer", "begin vertex index stored in the body"],
+						["end", "integer", "end vertex index stored in the body"]
+					],
+					"functions" : {
+						"GetBegVertexIndex" : {
+							"description" : "Returns the body vertex index at the beginning of the line.",
+							"returns" : [
+								["integer", "the stored vertex index"]
+							]
+						},
+						"SetBegVertexIndex" : {
+							"description" : "Sets the begin vertex index of the line.",
+							"parameters" : [
+								["index", "integer", "the vertex index"]
+							]
+						},
+						"GetEndVertexIndex" : {
+							"description" : "Returns the body vertex index at the end of the line.",
+							"returns" : [
+								["integer", "the stored vertex index"]
+							]
+						},
+						"SetEndVertexIndex" : {
+							"description" : "Sets the end vertex index of the line.",
+							"parameters" : [
+								["index", "integer", "the vertex index"]
+							]
+						},
+						"HasMaterialIndex" : {
+							"description" : "Returns if the line has a material index.",
+							"returns" : [
+								["boolean", "the result"]
+							]
+						},
+						"GetMaterialIndex" : {
+							"description" : "Returns the line material index.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"SetMaterialIndex" : {
+							"description" : "Sets the line material index.",
+							"parameters" : [
+								["material", "integer", "the material index"]
+							]
+						},
+						"InheritAttributes" : {
+							"description" : "Inherits attributes (material) from an another line.",
+							"parameters" : [
+								["source", "BodyLine", "the source line"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the line.",
+							"returns" : [
+								["BodyLine", "the cloned instance"]
+							]
+						}
+					}
+				},
+				"BodyPolygon" : {
+					"description" : "Represents a polygon in a 3D body. The polygon contains indices of vertices stored in its body. It also contains a material index of a material defined outside of the body, and a curve group index which defines its normal vector calculation in case of smooth surfaces.",
+					"parameters" : [
+						["vertices", "integer[*]", "array of vertex indices stored in the body"]
+					],
+					"functions" : {
+						"AddVertexIndex" : {
+							"description" : "Adds a vertex index to the polygon.",
+							"parameters" : [
+								["index", "integer", "the vertex index"]
+							]
+						},
+						"InsertVertexIndex" : {
+							"description" : "Inserts a vertex index to given index in the polygon.",
+							"parameters" : [
+								["vertexIndex", "integer", "the vertex index"],
+								["polygonIndex", "integer", "the index in the polygon"]
+							]
+						},
+						"GetVertexIndex" : {
+							"description" : "Returns the body vertex index at the given polygon vertex index.",
+							"parameters" : [
+								["index", "integer", "the polygon vertex index"]
+							],
+							"returns" : [
+								["integer", "the stored vertex index"]
+							]
+						},
+						"SetVertexIndex" : {
+							"description" : "Sets the body vertex index at the given polygon vertex index.",
+							"parameters" : [
+								["index", "integer", "the polygon vertex index"],
+								["vertIndex", "integer", "the body vertex index"]
+							]
+						},
+						"GetVertexIndices" : {
+							"description" : "Returns an array of the body vertex indices in the polygon.",
+							"returns" : [
+								["integer[]", "the stored vertex indices"]
+							]
+						},
+						"SetVertexIndices" : {
+							"description" : "Sets the vertex indices in the polygon.",
+							"parameters" : [
+								["vertices", "integer[]", "the new vertex indices"]
+							]
+						},
+						"VertexIndexCount" : {
+							"description" : "Returns the vertex count of the polygon.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"HasMaterialIndex" : {
+							"description" : "Returns if the polygon has a material index.",
+							"returns" : [
+								["boolean", "the result"]
+							]
+						},
+						"GetMaterialIndex" : {
+							"description" : "Returns the polygons material index.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"SetMaterialIndex" : {
+							"description" : "Sets the polygons material index.",
+							"parameters" : [
+								["material", "integer", "the material index"]
+							]
+						},
+						"HasCurveGroup" : {
+							"description" : "Returns if the polygon has a curve group index.",
+							"returns" : [
+								["boolean", "the result"]
+							]
+						},
+						"GetCurveGroup" : {
+							"description" : "Returns the polygons curve group index.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"SetCurveGroup" : {
+							"description" : "Sets the polygons curve group index.",
+							"parameters" : [
+								["group", "integer", "the curve group index"]
+							]
+						},
+						"ReverseVertexIndices" : {
+							"description" : "Reverses the order of vertex indices in the polygon."
+						},
+						"InheritAttributes" : {
+							"description" : "Inherits attributes (material and curve group index) from an another polygon.",
+							"parameters" : [
+								["source", "BodyPolygon", "the source polygon"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the polygon.",
+							"returns" : [
+								["BodyPolygon", "the cloned instance"]
+							]
+						}
+					}
+				},
+				"BodyTextureProjection" : {
+					"description" : "Represents the texture projection of the body. It contains a projection type, and a coordinate system for projection.",
+					"functions" : {
+						"GetType" : {
+							"description" : "Returns the texture projection type.",
+							"returns" : [
+								["TextureProjectionType", "the result"]
+							]
+						},
+						"GetCoords" : {
+							"description" : "Returns the texture projection coordinate system.",
+							"returns" : [
+								["CoordSystem", "the result"]
+							]
+						},
+						"SetType" : {
+							"description" : "Sets the texture projection type.",
+							"parameters" : [
+								["type", "TextureProjectionType", "the type"]
+							]
+						},
+						"SetCoords" : {
+							"description" : "Sets the texture projection coordinates.",
+							"parameters" : [
+								["coords", "CoordSystem", "the coordinates"]
+							]
+						},
+						"SetPlanar" : {
+							"description" : "Sets the texture projection to planar with the given parameters.",
+							"parameters" : [
+								["origo", "Coord", "origo of the projection"],
+								["xDirection", "Vector", "x direction of the projection plane"],
+								["yDirection", "Vector", "y direction of the projection plane"]
+							]
+						},
+						"SetCubic" : {
+							"description" : "Sets the texture projection to cubic with the given parameters.",
+							"parameters" : [
+								["origo", "Coord", "origo of the projection"],
+								["xDirection", "Vector", "x direction (edge of the cube) of the projection"],
+								["yDirection", "Vector", "y direction (edge of the cube) of the projection"],
+								["zDirection", "Vector", "z direction (edge of the cube) of the projection"]
+							]
+						},
+						"SetCylindrical" : {
+							"description" : "Sets the texture projection to cylindrical with the given parameters.",
+							"parameters" : [
+								["origo", "Coord", "origo of the projection"],
+								["radius", "number", "radius of the cylinder"],
+								["xDirection", "Vector", "x direction (start point along perimeter) of the projection"],
+								["zDirection", "Vector", "z direction (normal vector) of the projection"]
+							]
+						},
+						"Transform" : {
+							"description" : "Transforms the texture projection coordinate system.",
+							"parameters" : [
+								["transformation", "Transformation", "the transformation"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the texture projection.",
+							"returns" : [
+								["BodyTextureProjection", "the cloned instance"]
+							]
+						}
+					}
+				},
+				"Body" : {
+					"description" : "Represents a 3D body. The body contains vertices, polygons, and a texture coordinate system.",
+					"functions" : {
+						"AddVertex" : {
+							"description" : "Adds a vertex to the body.",
+							"parameters" : [
+								["vertex", "BodyVertex", "the vertex"]
+							],
+							"returns" : [
+								["integer", "the index of the newly added vertex"]
+							]
+						},
+						"AddPoint" : {
+							"description" : "Adds a point to the body.",
+							"parameters" : [
+								["point", "BodyPoint", "the point"]
+							],
+							"returns" : [
+								["integer", "the index of the newly added point"]
+							]
+						},
+						"AddLine" : {
+							"description" : "Adds a line to the body.",
+							"parameters" : [
+								["line", "BodyLine", "the line"]
+							],
+							"returns" : [
+								["integer", "the index of the newly added line"]
+							]
+						},
+						"AddPolygon" : {
+							"description" : "Adds a polygon to the body.",
+							"parameters" : [
+								["polygon", "BodyPolygon", "the polygon"]
+							],
+							"returns" : [
+								["integer", "the index of the newly added polygon"]
+							]
+						},
+						"GetVertex" : {
+							"description" : "Returns the vertex at the given index.",
+							"parameters" : [
+								["index", "integer", "the vertex index"]
+							],
+							"returns" : [
+								["BodyVertex", "the result"]
+							]
+						},
+						"GetVertexPosition" : {
+							"description" : "Returns the position of the vertex at the given index.",
+							"parameters" : [
+								["index", "integer", "the vertex index"]
+							],
+							"returns" : [
+								["Coord", "the result"]
+							]
+						},
+						"SetVertexPosition" : {
+							"description" : "Sets the position of the vertex at the given index.",
+							"parameters" : [
+								["index", "integer", "the vertex index"],
+								["position", "Coord", "the new position"]
+							]
+						},
+						"GetPoint" : {
+							"description" : "Returns the point at the given index.",
+							"parameters" : [
+								["index", "integer", "the point index"]
+							],
+							"returns" : [
+								["BodyPoint", "the result"]
+							]
+						},
+						"GetLine" : {
+							"description" : "Returns the line at the given index.",
+							"parameters" : [
+								["index", "integer", "the line index"]
+							],
+							"returns" : [
+								["BodyLine", "the result"]
+							]
+						},
+						"GetPolygon" : {
+							"description" : "Returns the polygon at the given index.",
+							"parameters" : [
+								["index", "integer", "the polygon index"]
+							],
+							"returns" : [
+								["BodyPolygon", "the result"]
+							]
+						},
+						"SetPointsMaterialIndex" : {
+							"description" : "Sets the material index for all points in the body.",
+							"parameters" : [
+								["material", "integer", "the material index"]
+							]
+						},
+						"SetLinesMaterialIndex" : {
+							"description" : "Sets the material index for all lines in the body.",
+							"parameters" : [
+								["material", "integer", "the material index"]
+							]
+						},
+						"SetPolygonsMaterialIndex" : {
+							"description" : "Sets the material index for all polygons in the body.",
+							"parameters" : [
+								["material", "integer", "the material index"]
+							]
+						},
+						"SetPolygonsCurveGroup" : {
+							"description" : "Sets the curve group index for all polygons in the body.",
+							"parameters" : [
+								["group", "integer", "the curve group index"]
+							]
+						},
+						"RemoveVertex" : {
+							"description" : "Removes a vertex from the body. It also removes connected polygons.",
+							"parameters" : [
+								["index", "integer", "the index of the vertex"]
+							]
+						},
+						"RemovePoint" : {
+							"description" : "Removes a point from the body.",
+							"parameters" : [
+								["index", "integer", "the index of the point"]
+							]
+						},
+						"RemoveLine" : {
+							"description" : "Removes a line from the body.",
+							"parameters" : [
+								["index", "integer", "the index of the line"]
+							]
+						},
+						"RemovePolygon" : {
+							"description" : "Removes a polygon from the body.",
+							"parameters" : [
+								["index", "integer", "the index of the polygon"]
+							]
+						},
+						"VertexCount" : {
+							"description" : "Returns the vertex count of the body.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"PointCount" : {
+							"description" : "Returns the point count of the body.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"LineCount" : {
+							"description" : "Returns the line count of the body.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"PolygonCount" : {
+							"description" : "Returns the polygon count of the body.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"GetTextureProjection" : {
+							"description" : "Returns the texture projection of the body.",
+							"returns" : [
+								["BodyTextureProjection", "the result"]
+							]
+						},
+						"SetTextureProjection" : {
+							"description" : "Sets the texture projection of the body.",
+							"parameters" : [
+								["projection", "BodyTextureProjection", "the new texture projection"]
+							]
+						},
+						"SetPlanarTextureProjection" : {
+							"description" : "Sets the texture projection to planar with the given parameters.",
+							"parameters" : [
+								["origo", "Coord", "origo of the projection"],
+								["xDirection", "Vector", "x direction of the projection plane"],
+								["yDirection", "Vector", "y direction of the projection plane"]
+							]
+						},
+						"SetCubicTextureProjection" : {
+							"description" : "Sets the texture projection to cubic with the given parameters.",
+							"parameters" : [
+								["origo", "Coord", "origo of the projection"],
+								["xDirection", "Vector", "x direction (edge of the cube) of the projection"],
+								["yDirection", "Vector", "y direction (edge of the cube) of the projection"],
+								["zDirection", "Vector", "z direction (edge of the cube) of the projection"]
+							]
+						},
+						"SetCylindricalTextureProjection" : {
+							"description" : "Sets the texture projection to cylindrical with the given parameters.",
+							"parameters" : [
+								["origo", "Coord", "origo of the projection"],
+								["radius", "number", "radius of the cylinder"],
+								["xDirection", "Vector", "x direction (start point along perimeter) of the projection"],
+								["zDirection", "Vector", "z direction (normal vector) of the projection"]
+							]
+						},
+						"Transform" : {
+							"description" : "Transforms the body.",
+							"parameters" : [
+								["transformation", "Transformation", "the transformation"]
+							]
+						},
+						"GetBoundingBox" : {
+							"description" : "Returns the bounding box of the body.",
+							"returns" : [
+								["Box", "the result"]
+							]
+						},
+						"GetCenter" : {
+							"description" : "Returns the center of the bounding box of the body.",
+							"returns" : [
+								["Coord", "the result"]
+							]
+						},
+						"GetBoundingSphere" : {
+							"description" : "Returns the bounding sphere of the body.",
+							"returns" : [
+								["Sphere", "the result"]
+							]
+						},
+						"OffsetToOrigo" : {
+							"description" : "Offsets the body to the origo."
+						},
+						"Merge" : {
+							"description" : "Merges an existing body to the body.",
+							"parameters" : [
+								["body", "Body", "the body to merge"]
+							]
+						},
+						"Clear" : {
+							"description" : "Makes the body empty."
+						},
+						"Clone" : {
+							"description" : "Clones the body.",
+							"returns" : [
+								["Body", "the cloned instance"]
+							]
+						}
+					}
+				},
+				"Model" : {
+					"description" : "Represents a 3D model. The model contains bodies.",
+					"functions" : {
+						"AddBody" : {
+							"description" : "Adds a body to the model.",
+							"parameters" : [
+								["body", "Body", "the body"]
+							],
+							"returns" : [
+								["integer", "the index of the newly added body"]
+							]
+						},
+						"AddBodies" : {
+							"description" : "Adds bodies to the model.",
+							"parameters" : [
+								["bodies", "Body[*]", "the body"]
+							]
+						},
+						"GetBody" : {
+							"description" : "Returns the stored body with the given index.",
+							"parameters" : [
+								["index", "integer", "the index of the body"]
+							],
+							"returns" : [
+								["Body", "the result"]
+							]
+						},
+						"BodyCount" : {
+							"description" : "Returns the body count of the model.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"AddMaterial" : {
+							"description" : "Adds a material to the mode.",
+							"parameters" : [
+								["material", "Material", "the material"]
+							],
+							"returns" : [
+								["integer", "the index of the newly added material"]
+							]
+						},
+						"GetMaterial" : {
+							"description" : "Returns a material from the model.",
+							"parameters" : [
+								["index", "integer", "the index"]
+							],
+							"returns" : [
+								["Material", "the result"]
+							]
+						},
+						"GetDefaultMaterial" : {
+							"description" : "Returns the default material from the model. It is always exists.",
+							"returns" : [
+								["Material", "the result"]
+							]
+						},
+						"GetMaterialSet" : {
+							"description" : "Returns the material set of the model.",
+							"returns" : [
+								["MaterialSet", "the result"]
+							]
+						},
+						"Count" : {
+							"description" : "Returns the material count of the model.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"VertexCount" : {
+							"description" : "Returns the vertex count of the model.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"PolygonCount" : {
+							"description" : "Returns the polygon count of the model.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						}
+					}
+				},
+				"VertInfo" : {
+					"description" : "Contains adjacency information for a body vertex. Contains arrays with indices of connected edge and polygon info."
+				},
+				"EdgeInfo" : {
+					"description" : "Contains adjacency information for a body edge. Contains indices of connected vertex and polygon info."
+				},
+				"PolyEdgeInfo" : {
+					"description" : "Contains adjacency information for a body polygon edge. Contains an index of an existing edge, and a flag which defines its direction."
+				},
+				"PgonInfo" : {
+					"description" : "Contains adjacency information for a body polygon. Contains arrays with indices of connected vertex and poly edge info."
+				},
+				"AdjacencyInfo" : {
+					"description" : "Contains adjacency information for a body. Contains arrays with vertex, edge and polygon info.",
+					"parameters" : [
+						["body", "Body", "the body"]
+					],
+					"functions" : {
+						"Reset" : {
+							"description" : "Calculates the adjacency information for a body.",
+							"returns" : [
+								["body", "Body"]
+							]
+						},
+						"IsContourVertex" : {
+							"description" : "Returns if the vertex has contour edge.",
+							"parameters" : [
+								["vert", "VertInfo", "the vertex info"]
+							],
+							"returns" : [
+								["boolean", "the result"]
+							]
+						},
+						"IsContourEdge" : {
+							"description" : "Returns if the edge has only one polygon neighbour.",
+							"parameters" : [
+								["edge", "EdgeInfo", "the edge info"]
+							],
+							"returns" : [
+								["boolean", "the result"]
+							]
+						},
+						"GetEdgePolygonCount" : {
+							"description" : "Returns the neighbour polygon count of the edge.",
+							"parameters" : [
+								["edge", "EdgeInfo", "the edge info"]
+							],
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"GetAnotherPgonOfEdge" : {
+							"description" : "Returns the polygon index which is next to the given polygon along an edge.",
+							"parameters" : [
+								["edge", "EdgeInfo", "the edge info"],
+								["currentPgon", "integer", "the polygon index"]
+							],
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"GetPolyEdgeStartVertex" : {
+							"description" : "Returns the start vertex index of a polygon edge.",
+							"parameters" : [
+								["polyEdge", "PolyEdgeInfo", "the polygon edge info"]
+							],
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"GetPolyEdgeEndVertex" : {
+							"description" : "Returns the end vertex index of a polygon edge.",
+							"parameters" : [
+								["polyEdge", "PolyEdgeInfo", "the polygon edge info"]
+							],
+							"returns" : [
+								["integer", "the result"]
+							]
+						}
+					}
+				},
+				"Camera" : {
+					"description" : "Represents a camera.",
+					"parameters" : [
+						["eye", "Coord", "the eye position"],
+						["center", "Coord", "the center position"],
+						["up", "Vector", "the up vector"],
+						["fieldOfView", "number", "field of view in degree"],
+						["nearClippingPlane", "number", "near clipping plane distance"],
+						["farClippingPlane", "number", "far clipping plane distance"]
+					],
+					"functions" : {
+						"Set" : {
+							"description" : "Sets the camera.",
+							"parameters" : [
+								["eye", "Coord", "the eye position"],
+								["center", "Coord", "the center position"],
+								["up", "Vector", "the up vector"],
+								["fieldOfView", "number", "field of view in degree"],
+								["nearClippingPlane", "number", "near clipping plane distance"],
+								["farClippingPlane", "number", "far clipping plane distance"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the camera.",
+							"returns" : [
+								["Camera", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"TriangleBody" : {
+					"description" : "Represents a 3D body which contains only triangles.",
+					"functions" : {
+						"SetName" : {
+							"description" : "Sets the name of the body.",
+							"parameters" : [
+								["name", "string", "the name"]
+							]
+						},
+						"GetName" : {
+							"description" : "Returns the name of the body.",
+							"returns" : [
+								["string", "the result"]
+							]
+						},
+						"AddVertex" : {
+							"description" : "Adds a vertex to the body.",
+							"parameters" : [
+								["x, y, z", "number", "the coordinates of the vertex"]
+							],
+							"returns" : [
+								["integer", "the index of the added vertex"]
+							]
+						},
+						"GetVertex" : {
+							"description" : "Returns the vertex at the given index.",
+							"parameters" : [
+								["index", "integer", "the vertex index"]
+							],
+							"returns" : [
+								["Coord", "the result"]
+							]
+						},
+						"SetVertex" : {
+							"description" : "Sets the position of the vertex at the given index.",
+							"parameters" : [
+								["index", "integer", "the vertex index"],
+								["x, y, z", "number", "the new coordinates of the vertex"]
+							]
+						},
+						"VertexCount" : {
+							"description" : "Returns the vertex count of the body.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"AddNormal" : {
+							"description" : "Adds a normal vector to the body.",
+							"parameters" : [
+								["x, y, z", "number", "the coordinates of the normal vector"]
+							],
+							"returns" : [
+								["integer", "the index of the added normal vector"]
+							]
+						},
+						"GetNormal" : {
+							"description" : "Returns the normal vector at the given index.",
+							"parameters" : [
+								["index", "integer", "the normal vector index"]
+							],
+							"returns" : [
+								["Vector", "the result"]
+							]
+						},
+						"GetTriangleNormal" : {
+							"description" : "Returns the normal vector of a triangle at the given position.",
+							"parameters" : [
+								["triangleIndex", "integer", "the triangle index"],
+								["normalPosition", "Coord", "the position of the normal inside the triangle"]
+							],
+							"returns" : [
+								["Vector", "the result"]
+							]
+						},
+						"NormalCount" : {
+							"description" : "Returns the normal vector count of the body.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"AddUV" : {
+							"description" : "Adds a texture coordinate to the body.",
+							"parameters" : [
+								["x, y", "number", "the coordinates of the texture coordinate"]
+							],
+							"returns" : [
+								["integer", "the index of the added texture coordinate"]
+							]
+						},
+						"AddDefaultUV" : {
+							"description" : "Adds a default texture coordinate to the body. The default texture coordinate is stored only once.",
+							"returns" : [
+								["integer", "the index of the default texture coordinate"]
+							]
+						},
+						"GetUV" : {
+							"description" : "Returns the texture coordinate at the given index.",
+							"parameters" : [
+								["index", "integer", "the texture coordinate index"]
+							],
+							"returns" : [
+								["Coord2D", "the result"]
+							]
+						},
+						"UVCount" : {
+							"description" : "Returns the texture coordinate count of the body.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"AddTriangle" : {
+							"description" : "Adds a triangle to the body.",
+							"parameters" : [
+								["v0, v1, v2", "integer", "the vertex indices of the triangle"],
+								["n0, n1, n2", "integer", "the normal vector indices of the triangle"],
+								["u0, u1, u2", "integer", "the texture coordinate indices of the triangle"],
+								["mat", "integer", "the material index of the triangle"],
+								["curve", "integer", "the curve group index of the triangle"]
+							],
+							"returns" : [
+								["integer", "the index of the added triangle"]
+							]
+						},
+						"GetTriangle" : {
+							"description" : "Returns the triangle at the given index.",
+							"parameters" : [
+								["index", "integer", "the triangle index"]
+							],
+							"returns" : [
+								["object", "the result"]
+							]
+						},
+						"TriangleCount" : {
+							"description" : "Returns the triangle count of the body.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"GetBoundingBox" : {
+							"description" : "Returns the bounding box of the body.",
+							"returns" : [
+								["Box", "the result"]
+							]
+						},
+						"GetCenter" : {
+							"description" : "Returns the center of the bounding box of the body.",
+							"returns" : [
+								["Coord", "the result"]
+							]
+						},
+						"GetBoundingSphere" : {
+							"description" : "Returns the bounding sphere of the body.",
+							"returns" : [
+								["Sphere", "the result"]
+							]
+						},
+						"Finalize" : {
+							"description" : "Finalizes the body. This operation calculates normal vectors and fixes the body if some data is missing from it.",
+							"parameters" : [
+								["model", "TriangleModel", "the triangle index"]
+							]
+						},
+						"Clone" : {
+							"description" : "Clones the body.",
+							"returns" : [
+								["TriangleBody", "a cloned instance"]
+							]
+						}
+					}
+				},
+				"TriangleModel" : {
+					"description" : "Represents a 3D model which contains only triangles.",
+					"functions" : {
+						"AddMaterial" : {
+							"description" : "Adds a material to the model.",
+							"parameters" : [
+								["material", "material", "the parameters of the material"]
+							],
+							"returns" : [
+								["integer", "the index of the added material"]
+							]
+						},
+						"GetMaterial" : {
+							"description" : "Returns the material at the given index.",
+							"parameters" : [
+								["index", "integer", "the material index"]
+							],
+							"returns" : [
+								["object", "the result"]
+							]
+						},
+						"AddDefaultMaterial" : {
+							"description" : "Adds a default material to the model. The default material is stored only once.",
+							"returns" : [
+								["integer", "the index of the default material"]
+							]
+						},
+						"GetDefaultMaterialIndex" : {
+							"description" : "Adds a default material, and returns the index of it.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"MaterialCount" : {
+							"description" : "Returns the material count of the model.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"AddBody" : {
+							"description" : "Adds a body to the model.",
+							"parameters" : [
+								["body", "TriangleBody", "the body"]
+							],
+							"returns" : [
+								["integer", "the index of the added body"]
+							]
+						},
+						"AddBodyToIndex" : {
+							"description" : "Adds a body to the model to the given index.",
+							"parameters" : [
+								["body", "TriangleBody", "the body"],
+								["index", "integer", "the index"]
+							],
+							"returns" : [
+								["integer", "the index of the added body"]
+							]
+						},
+						"GetBody" : {
+							"description" : "Returns the body at the given index.",
+							"parameters" : [
+								["index", "integer", "the body index"]
+							],
+							"returns" : [
+								["TriangleBody", "the result"]
+							]
+						},
+						"VertexCount" : {
+							"description" : "Returns the vertex count of the model.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"TriangleCount" : {
+							"description" : "Returns the triangle count of the model.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"BodyCount" : {
+							"description" : "Returns the body count of the model.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"FinalizeMaterials" : {
+							"description" : "Finalizes the materials in the model. This fill every not specified material parameter with default values."
+						},
+						"FinalizeBodies" : {
+							"description" : "Finalizes all body in the model."
+						},
+						"Finalize" : {
+							"description" : "Finalizes the model. It finalizes materials and bodies."
+						}
+					}
+				}
+			},
+			"enums" : {
+				"TextureProjectionType" : {
+					"description" : "Texture projection type.",
+					"values" : [
+						["Planar", "planar projection"],
+						["Cubic", "cubic projection"],
+						["Cylindrical", "cylindrical projection"]
+					]
+				}
+			}
+		},
+		"Import" : {
+		},
+		"Renderer" : {
+		},
+		"Viewer" : {
+			"functions" : {
+				"OrderPolygons" : {
+					"description" : "Order body polygons from front to back depending on the eye position.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["eye", "Coord", "the camera eye position"],
+						["center", "Coord", "the camera center position"]
+					],
+					"returns" : [
+						["integer[]", "the ordered polygon indices"]
+					]
+				},
+				"DrawProjectedBody" : {
+					"description" : "Draws a projected body.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["materials", "MaterialSet", "the material container"],
+						["camera", "Camera", "the camera for projection"],
+						["drawMode", "string", "draw mode ('HiddenLinePainter', 'HiddenLineFrontFacing' or 'Wireframe')"],
+						["needClear", "boolean", "clear the display before draw"],
+						["drawer", "drawer object", "the drawer object"]
+					]
+				}
+			},
+			"classes" : {
+				"CanvasDrawer" : {
+					"description" : "Represents an object which can draw primitives to a canvas.",
+					"parameters" : [
+						["canvas", "html canvas element", "the destination element"]
+					],
+					"functions" : {
+						"GetWidth" : {
+							"description" : "Returns the width of the target.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"GetHeight" : {
+							"description" : "Returns the height of the target.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"Clear" : {
+							"description" : "Clears the target."
+						},
+						"DrawLine" : {
+							"description" : "Draws a line to the target.",
+							"parameters" : [
+								["from", "Coord2D", "the start of the line"],
+								["to", "Coord2D", "the end of the line"]
+							]
+						},
+						"DrawPolygon" : {
+							"description" : "Draws a polygon to the target.",
+							"parameters" : [
+								["polygon", "Polygon2D", "the polygon"],
+								["color", "string", "the hex color string"],
+								["contour", "boolean", "need to draw contour"]
+							]
+						}
+					}
+				},
+				"SVGDrawer" : {
+					"description" : "Represents an object which can draw primitives to an svg.",
+					"parameters" : [
+						["svgObject", "html svg element", "the destination element"]
+					],
+					"functions" : {
+						"GetWidth" : {
+							"description" : "Returns the width of the target.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"GetHeight" : {
+							"description" : "Returns the height of the target.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"Clear" : {
+							"description" : "Clears the target."
+						},
+						"DrawLine" : {
+							"description" : "Draws a line to the target.",
+							"parameters" : [
+								["from", "Coord2D", "the start of the line"],
+								["to", "Coord2D", "the end of the line"]
+							]
+						},
+						"DrawPolygon" : {
+							"description" : "Draws a polygon to the target.",
+							"parameters" : [
+								["polygon", "Polygon2D", "the polygon"],
+								["color", "string", "the hex color string"],
+								["contour", "boolean", "need to draw contour"]
+							]
+						}
+					}
+				}
+			}
+		},
+		"Extras" : {
+			"functions" : {
+				"GenerateSolidWithRadius" : {
+					"description" : "Generates a special solid with the given radius.",
+					"parameters" : [
+						["solidName", "string", "the name of the solid"],
+						["radius", "number", "the radius of the solid"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateTetrahedron" : {
+					"description" : "Generates a tetrahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateHexahedron" : {
+					"description" : "Generates a hexahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateOctahedron" : {
+					"description" : "Generates an octahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateDodecahedron" : {
+					"description" : "Generates a dodecahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateIcosahedron" : {
+					"description" : "Generates an icosahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateTruncatedTetrahedron" : {
+					"description" : "Generates a truncated tetrahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateCuboctahedron" : {
+					"description" : "Generates a cuboctahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateTruncatedCube" : {
+					"description" : "Generates a truncated cube.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateTruncatedOctahedron" : {
+					"description" : "Generates a truncated octahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateRhombicuboctahedron" : {
+					"description" : "Generates a rhombicuboctahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateTruncatedCuboctahedron" : {
+					"description" : "Generates a truncated cuboctahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateSnubCube" : {
+					"description" : "Generates a snub cube.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateIcosidodecahedron" : {
+					"description" : "Generates an icosidodecahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateTruncatedDodecahedron" : {
+					"description" : "Generates a truncated dodecahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateTruncatedIcosahedron" : {
+					"description" : "Generates a truncated icosahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateRhombicosidodecahedron" : {
+					"description" : "Generates a rhombicosidodecahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateTruncatedIcosidodecahedron" : {
+					"description" : "Generates a truncated icosidodecahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateSnubDodecahedron" : {
+					"description" : "Generates a snub dodecahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"AddCumulatedPolygonToBody" : {
+					"description" : "Adds polygons to a body by cumulating the original polygons vertex index array.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["vertices", "integer[*]", "the vertices of the original polygon"],
+						["height", "number", "the height of the cumulation"]
+					]
+				},
+				"GenerateCumulatedTetrahedron" : {
+					"description" : "Generates a cumulated tetrahedron.",
+					"parameters" : [
+						["pyramidUnitHeight", "number", "the unit height of pyramids"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateCumulatedHexahedron" : {
+					"description" : "Generates a cumulated hexahedron.",
+					"parameters" : [
+						["pyramidUnitHeight", "number", "the unit height of pyramids"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateCumulatedOctahedron" : {
+					"description" : "Generates a cumulated octahedron.",
+					"parameters" : [
+						["pyramidUnitHeight", "number", "the unit height of pyramids"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateCumulatedDodecahedron" : {
+					"description" : "Generates a cumulated dodecahedron.",
+					"parameters" : [
+						["pyramidUnitHeight", "number", "the unit height of pyramids"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateCumulatedIcosahedron" : {
+					"description" : "Generates a cumulated icosahedron.",
+					"parameters" : [
+						["pyramidUnitHeight", "number", "the unit height of pyramids"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateTetrakisHexahedron" : {
+					"description" : "Generates a tetrakis hexahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateRhombicDodecahedron" : {
+					"description" : "Generates a rhombic dodecahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GeneratePentakisDodecahedron" : {
+					"description" : "Generates a pentakis dodecahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateSmallStellatedDodecahedron" : {
+					"description" : "Generates a small stellated dodecahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateGreatDodecahedron" : {
+					"description" : "Generates a great dodecahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateSmallTriambicIcosahedron" : {
+					"description" : "Generates a small triambic icosahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateGreatStellatedDodecahedron" : {
+					"description" : "Generates a great stellated dodecahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateSmallTriakisOctahedron" : {
+					"description" : "Generates a small triakis octahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateStellaOctangula" : {
+					"description" : "Generates a stella octangula.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateTriakisTetrahedron" : {
+					"description" : "Generates a triakis tetrahedron.",
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateLegoBrick" : {
+					"description" : "Generates a lego brick.",
+					"parameters" : [
+						["rows", "integer", "the row count"],
+						["columns", "integer", "the columns count"],
+						["isLarge", "boolean", "the brick is large"],
+						["hasTopCylinders", "boolean", "the brick has top cylinders"],
+						["hasBottomCylinders", "boolean", "the brick has bottom cylinders"],
+						["segmentation", "integer", "the segmentation of cylinders"],
+						["isCurved", "boolean", "create smooth surfaces"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateConvexHullBody" : {
+					"description" : "Generates a convex hull body from the given coordinates.",
+					"parameters" : [
+						["coord", "Coord[*]", "the coordinates"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateSuperShape" : {
+					"description" : "Generates a supershape.",
+					"parameters" : [
+						["parameters", "12 numbers", "the supershape parameters"],
+						["segmentation", "integer", "the segmentation"],
+						["isCurved", "boolean", "create smooth surfaces"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"CatmullClarkSubdivisionOneIteration" : {
+					"description" : "Runs one iteration of Catmull-Clark subdivision on a body.",
+					"parameters" : [
+						["body", "Body", "the body"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"CatmullClarkSubdivision" : {
+					"description" : "Runs multiple iterations of Catmull-Clark subdivision on a body.",
+					"parameters" : [
+						["body", "Body", "the body"],
+						["iterations", "integer", "the iteration number"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"BooleanOperation" : {
+					"description" : "Makes a boolean operation on the given bodies.",
+					"parameters" : [
+						["operation", "string", "the operation ('Union', 'Difference', or 'Intersection')"],
+						["aBody", "Body", "the first body"],
+						["bBody", "Body", "the second body"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateSurface" : {
+					"description" : "Generates a parametric surface.",
+					"parameters" : [
+						["xRange", "number[2]", "the from-to range on x axis"],
+						["yRange", "number[2]", "the from-to range on y axis"],
+						["xSegmentation", "integer", "the segmentation along the x axis"],
+						["ySegmentation", "integer", "the segmentation along the y axis"],
+						["useTriangles", "boolean", "generate triangles instead of quadrangles"],
+						["isCurved", "boolean", "create smooth surfaces"],
+						["getPointCallback", "function", "callback function which returns the point for a position"],
+						["userData", "anything", "user data which will be passed to getPointCallback"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				},
+				"GenerateBezierSurface" : {
+					"description" : "Generates a bezier surface base on the given control points.",
+					"parameters" : [
+						["surfaceControlPoints", "SurfaceControlPoints", "the control points"],
+						["xSegmentation", "integer", "the segmentation along the x axis"],
+						["ySegmentation", "integer", "the segmentation along the y axis"],
+						["isCurved", "boolean", "create smooth surfaces"]
+					],
+					"returns" : [
+						["Body", "the result"]
+					]
+				}
+			},
+			"classes" : {
+				"LegoDimensions" : {
+					"description" : "Class that contains lego brick dimensions."
+				},
+				"SurfaceControlPoints" : {
+					"description" : "Represents control points for surface generation.",
+					"parameters" : [
+						["n", "integer", "the first dimension"],
+						["m", "integer", "the second dimension"]
+					],
+					"functions" : {
+						"GetNValue" : {
+							"description" : "Returns the n value.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"GetMValue" : {
+							"description" : "Returns the m value.",
+							"returns" : [
+								["integer", "the result"]
+							]
+						},
+						"GetControlPoint" : {
+							"description" : "Returns a control point.",
+							"parameters" : [
+								["i", "integer", "the first dimension"],
+								["j", "integer", "the second dimension"]
+							],
+							"returns" : [
+								["Coord", "the result"]
+							]
+						},
+						"InitPlanar" : {
+							"description" : "Inits planar control points.",
+							"parameters" : [
+								["xSize", "number", "the x size"],
+								["xSize", "number", "the y size"]
+							]
+						}
+					}
+				}
+			}
+		}
+	}
+}
