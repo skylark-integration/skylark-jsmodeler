@@ -25123,7 +25123,7 @@ define('skylark-jsmodeler/main',[
 	"./extensions/threeviewer/threeconverter",
 	"./extensions/threeviewer/threeviewer"
 
-],function(skyalrk,jsm){
+],function(skylark,jsm){
 	return skylark.attach("intg.jsmodeler",jsm);
 });
 define('skylark-jsmodeler', ['skylark-jsmodeler/main'], function (main) { return main; });
