@@ -1,0 +1,9 @@
+/**
+ * skylark-jsmodeler - A version of jsmodeler that ported to running on skylarkjs
+ * @author Hudaokeji, Inc.
+ * @version v0.9.0
+ * @link https://github.com/skylark-integration/skylark-jsmodeler/
+ * @license MIT
+ */
+define(["../core/jsm"],function(o){return o.GenerateSurface=function(n,t,r,e,i,u,f,s){var a=new o.Body,l=n[0],d=t[0],c=n[1]-n[0],p=t[1]-t[0];return function(n,t,i,u,a){var l,d,c;for(l=0;l<=e;l++)for(d=0;d<=r;d++)c=f(l,d,t+d*u,i+l*a,s),n.AddVertex(new o.BodyVertex(c))}(a,l,d,c/r,p/e),function(n){var t,f,s,a,l,d,c;for(f=0;f<e;f++)for(t=0;t<r;t++)a=(s=f*(r+1)+t)+1,d=(l=s+r+1)+1,i?(c=new o.BodyPolygon([s,a,d]),u&&c.SetCurveGroup(0),n.AddPolygon(c),c=new o.BodyPolygon([s,d,l]),u&&c.SetCurveGroup(0),n.AddPolygon(c)):(c=new o.BodyPolygon([s,a,d,l]),u&&c.SetCurveGroup(0),n.AddPolygon(c))}(a),a},o.SurfaceControlPoints=function(n,t){var r,e;for(this.n=n,this.m=t,this.points=[],r=0;r<=this.n;r++)for(this.points.push([]),e=0;e<=this.m;e++)this.points[r].push(new o.Coord(0,0,0))},o.SurfaceControlPoints.prototype.GetNValue=function(){return this.n},o.SurfaceControlPoints.prototype.GetMValue=function(){return this.m},o.SurfaceControlPoints.prototype.GetControlPoint=function(o,n){return this.points[o][n]},o.SurfaceControlPoints.prototype.InitPlanar=function(o,n){var t,r,e,i=o/this.n,u=n/this.m;for(t=0;t<=this.n;t++)for(r=0;r<=this.m;r++)(e=this.points[t][r]).x=t*i,e.y=r*u},o.GenerateBezierSurface=function(n,t,r,e){return o.GenerateSurface([0,1],[0,1],t,r,!1,e,function(n,t,r,e,i){var u,f,s,a,l,d,c=i.GetNValue(),p=i.GetMValue();for(s=new o.Coord(0,0,0),u=0;u<=c;u++){for(a=new o.Coord(0,0,0),f=0;f<=p;f++)d=o.BernsteinPolynomial(u,c,r)*o.BernsteinPolynomial(f,p,e),l=i.GetControlPoint(u,f).Clone().MultiplyScalar(d),a=o.CoordAdd(a,l);s=o.CoordAdd(s,a)}return s},n)},o});
+//# sourceMappingURL=../sourcemaps/extras/surfaces.js.map
