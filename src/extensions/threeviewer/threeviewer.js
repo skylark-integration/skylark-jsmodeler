@@ -74,7 +74,7 @@ define(["../../core/jsm"],function(JSM){
 			return false;
 		}
 
-		this.scene = new THREE.Scene();
+		this.scene = new JSM.THREE.Scene();
 		if (!this.scene) {
 			return false;
 		}
@@ -83,12 +83,12 @@ define(["../../core/jsm"],function(JSM){
 			canvas : this.canvas,
 			antialias : true
 		};
-		this.renderer = new THREE.WebGLRenderer (parameters);
+		this.renderer = new JSM.THREE.WebGLRenderer (parameters);
 		if (!this.renderer) {
 			return false;
 		}
 		
-		this.renderer.setClearColor (new THREE.Color (0xffffff));
+		this.renderer.setClearColor (new JSM.THREE.Color (0xffffff));
 		this.renderer.setSize (this.canvas.width, this.canvas.height);
 		return true;
 	};
@@ -112,7 +112,7 @@ define(["../../core/jsm"],function(JSM){
 			return false;
 		}
 		
-		this.camera = new THREE.PerspectiveCamera (this.cameraMove.fieldOfView, this.canvas.width / this.canvas.height, this.cameraMove.nearClippingPlane, this.cameraMove.farClippingPlane);
+		this.camera = new JSM.THREE.PerspectiveCamera (this.cameraMove.fieldOfView, this.canvas.width / this.canvas.height, this.cameraMove.nearClippingPlane, this.cameraMove.farClippingPlane);
 		if (!this.camera) {
 			return false;
 		}
@@ -123,24 +123,24 @@ define(["../../core/jsm"],function(JSM){
 
 	JSM.ThreeViewer.prototype.InitLights = function ()
 	{
-		var ambientColor = new THREE.Color ();
-		var diffuseColor = new THREE.Color ();
+		var ambientColor = new JSM.THREE.Color ();
+		var diffuseColor = new JSM.THREE.Color ();
 		ambientColor.setRGB (this.settings.lightAmbientColor[0], this.settings.lightAmbientColor[1], this.settings.lightAmbientColor[2]);
 		diffuseColor.setRGB (this.settings.lightDiffuseColor[0], this.settings.lightDiffuseColor[1], this.settings.lightDiffuseColor[2]);
 
-		this.ambientLight = new THREE.AmbientLight (ambientColor.getHex ());
+		this.ambientLight = new JSM.THREE.AmbientLight (ambientColor.getHex ());
 		if (!this.ambientLight) {
 			return false;
 		}
 
 		this.scene.add (this.ambientLight);
 		
-		this.directionalLight = new THREE.DirectionalLight (diffuseColor.getHex ());
+		this.directionalLight = new JSM.THREE.DirectionalLight (diffuseColor.getHex ());
 		if (!this.directionalLight) {
 			return false;
 		}
 		
-		var lightPosition = new THREE.Vector3 ().subVectors (this.cameraMove.eye, this.cameraMove.center);
+		var lightPosition = new JSM.THREE.Vector3 ().subVectors (this.cameraMove.eye, this.cameraMove.center);
 		this.directionalLight.position.set (lightPosition.x, lightPosition.y, lightPosition.z);
 
 		this.scene.add (this.directionalLight);
@@ -159,7 +159,7 @@ define(["../../core/jsm"],function(JSM){
 
 	JSM.ThreeViewer.prototype.SetClearColor = function (color)
 	{
-		this.renderer.setClearColor (new THREE.Color (color));
+		this.renderer.setClearColor (new JSM.THREE.Color (color));
 		this.DrawIfNeeded ();
 	};
 
@@ -225,7 +225,7 @@ define(["../../core/jsm"],function(JSM){
 		var count = 0;
 		
 		this.scene.traverse (function (current) {
-			if (current instanceof THREE.Mesh) {
+			if (current instanceof JSM.THREE.Mesh) {
 				count = count + current.geometry.faces.length;
 			}
 		});
@@ -443,12 +443,12 @@ define(["../../core/jsm"],function(JSM){
 		var mouseY = -(y / this.canvas.height) * 2 + 1;
 
 		var cameraPosition = this.camera.position;
-		var vector = new THREE.Vector3 (mouseX, mouseY, 0.5);
+		var vector = new JSM.THREE.Vector3 (mouseX, mouseY, 0.5);
 		vector.unproject (this.camera);
 		vector.sub (cameraPosition);
 		vector.normalize ();
 
-		var ray = new THREE.Raycaster (cameraPosition, vector);
+		var ray = new JSM.THREE.Raycaster (cameraPosition, vector);
 		return ray.intersectObjects (this.scene.children);
 	};
 
@@ -469,7 +469,7 @@ define(["../../core/jsm"],function(JSM){
 		var halfWidth = width / 2;
 		var halfHeight = height / 2;
 
-		var vector = new THREE.Vector3 (x, y, z);
+		var vector = new JSM.THREE.Vector3 (x, y, z);
 		vector.project (this.camera);
 		vector.x = (vector.x * halfWidth) + halfWidth;
 		vector.y = -(vector.y * halfHeight) + halfHeight;
@@ -493,9 +493,9 @@ define(["../../core/jsm"],function(JSM){
 
 		this.camera.position.set (this.cameraMove.eye.x, this.cameraMove.eye.y, this.cameraMove.eye.z);
 		this.camera.up.set (this.cameraMove.up.x, this.cameraMove.up.y, this.cameraMove.up.z);
-		this.camera.lookAt (new THREE.Vector3 (this.cameraMove.center.x, this.cameraMove.center.y, this.cameraMove.center.z));
+		this.camera.lookAt (new JSM.THREE.Vector3 (this.cameraMove.center.x, this.cameraMove.center.y, this.cameraMove.center.z));
 
-		var lightPosition = new THREE.Vector3 ().subVectors (this.cameraMove.eye, this.cameraMove.center);
+		var lightPosition = new JSM.THREE.Vector3 ().subVectors (this.cameraMove.eye, this.cameraMove.center);
 		this.directionalLight.position.set (lightPosition.x, lightPosition.y, lightPosition.z);
 
 		this.renderer.render (this.scene, this.camera);
@@ -524,7 +524,7 @@ define(["../../core/jsm"],function(JSM){
 
 	JSM.ThreeViewer.prototype.IsRelevantObject = function (threeObj)
 	{
-		return (threeObj instanceof THREE.Mesh || threeObj instanceof THREE.LineSegments || threeObj instanceof THREE.Points);
+		return (threeObj instanceof JSM.THREE.Mesh || threeObj instanceof JSM.THREE.LineSegments || threeObj instanceof JSM.THREE.Points);
 	};
 
 	JSM.ThreeViewer.prototype.IsVisibleObject = function (threeObj)
